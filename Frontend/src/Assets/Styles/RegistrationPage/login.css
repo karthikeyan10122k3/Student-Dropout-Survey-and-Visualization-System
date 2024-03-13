@@ -1,0 +1,57 @@
+/* .log-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #007bff; 
+    border-radius: 5px;
+  }
+  
+  .log-form p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff; 
+  }
+  
+  .log-form .log-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+    color: #007bff; 
+  }
+  
+  .log-inputField input,
+  .log-inputField select {
+    width: calc(100% - 10px); 
+    padding: 10px;
+    border: 1px solid #007bff; 
+    border-radius: 5px;
+  }
+  
+  .log-checkboxContent label .log-text {
+    font-size: 14px;
+    color: #007bff; 
+  }
+  .log-checkbox-text{
+    display: flex;
+    justify-content: space-between;
+  }
+  .log-forgot-password a{
+    color: red;
+  }
+  
+  .log-input-field input[type="button"]{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .log-input-field input[type="button"] {
+    background-color: #0056b3;
+  }
+   */

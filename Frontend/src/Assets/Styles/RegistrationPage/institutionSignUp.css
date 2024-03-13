@@ -1,0 +1,67 @@
+/* .inst-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.inst-form p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.inst-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.inst-input-field {
+  margin-bottom: 15px;
+  padding-right: 35px;
+}
+
+.inst-input-field input[type="text"],
+.inst-input-field input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  padding-right: 35px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.password {
+  padding-right: 35px;
+}
+
+.inst-button {
+  text-align: center;
+}
+
+.inst-login-signup {
+  display: flex;
+  justify-content: center;
+}
+
+.inst-signup-link {
+  color: #007bff;
+}
+
+.inst-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.inst-button a:hover {
+  background-color: #0056b3;
+} */
