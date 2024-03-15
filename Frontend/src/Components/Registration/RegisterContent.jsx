@@ -1,4 +1,4 @@
-import "../../Assets/Styles/RegistrationPage/registerContent.css"
+import "../../Assets/Styles/Registration/registerContent.css"
 
 import GovernmentSignUp from "./GovernmentSignUp";
 import InstitutionSignUp from "./InstitutionSignUp";

@@ -1,4 +1,4 @@
-/* .gov-form {
+.stud-form {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -7,27 +7,27 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.gov-form p {
+.stud-form p {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
   color: #007bff; 
 }
 
-.gov-title {
+.stud-title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
   display: block;
 }
 
-.gov-input-field {
+.stud-input-field {
   margin-bottom: 15px;
   padding-right: 35px;
 }
 
-.gov-input-field input[type="text"],
-.gov-input-field input[type="password"] {
+.stud-input-field input[type="text"],
+.stud-input-field input[type="password"] {
   width: 100%;
   padding: 10px;
   padding-right: 35px;
@@ -35,28 +35,28 @@
   font-size: 16px;
 }
 
-.gov-input {
+.stud-gov-input {
   position: relative;
 }
 
-.gov-password {
+.stud-password {
   padding-right: 35px;
 }
 
-.gov-button {
+.stud-button {
   text-align: center;
 }
 
-.gov-login-signup {
+.stud-login-signup {
   display: flex;
   justify-content: center;
 }
 
-.gov-signup-link {
+.stud-signup-link {
   color: #007bff;
 }
 
-.gov-button a {
+.stud-button a {
   display: inline-block;
   padding: 10px 20px;
   background-color: #007bff;
@@ -66,6 +66,6 @@
   transition: background-color 0.3s;
 }
 
-.gov-button a:hover {
+.stud-button a:hover {
   background-color: #0056b3;
-} */
+}

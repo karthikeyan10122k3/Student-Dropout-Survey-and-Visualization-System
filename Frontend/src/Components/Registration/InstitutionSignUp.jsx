@@ -1,7 +1,7 @@
-import "../../Assets/Styles/RegistrationPage/institutionSignUp.css"
+import "../../Assets/Styles/Registration/institutionSignUp.css";
 
 import { useState } from "react";
-import LoginComponent from "./Login";
+import { InstitutionLoginComponent } from "./Login";
 
 const InstitutionSignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -78,7 +78,7 @@ const InstitutionSignUp = () => {
           </form>
         </div>
       )}
-      {showLogin && <LoginComponent />}
+      {showLogin && <InstitutionLoginComponent />}
     </>
   );
 };

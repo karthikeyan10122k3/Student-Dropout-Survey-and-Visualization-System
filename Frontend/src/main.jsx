@@ -1,13 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import HomePage from "./Pages/HomePage/HomePage";
-import RegisterPage from "./Pages/RegistrationPage/RegisterPage";
+import RouterComponent from "./Router";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <HomePage /> */}
-    
-    <RegisterPage />
-
+    <RouterComponent />
   </React.StrictMode>
 );

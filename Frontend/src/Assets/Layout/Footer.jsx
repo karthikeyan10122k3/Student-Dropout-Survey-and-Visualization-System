@@ -1,4 +1,4 @@
-import footerStyle from "../Styles/HomePage/header_footer.module.css";
+import footerStyle from "./footer.module.css";
 
 const Footer = () => {
   const d = new Date();

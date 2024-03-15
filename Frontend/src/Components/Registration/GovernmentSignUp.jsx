@@ -1,7 +1,7 @@
-import "../../Assets/Styles/RegistrationPage/govSignUp.css"
+import "../../Assets/Styles/Registration/govSignUp.css"
 
 import { useState } from "react";
-import LoginComponent from "./Login";
+import {GovernmentLoginComponent} from "./Login";
 
 
 const GovernmentSignUp = () => {
@@ -44,7 +44,7 @@ const GovernmentSignUp = () => {
               />
             </div>
             <div className="gov-input-field gov-button">
-              <a href="dash.html">Signup</a>
+              <a href="#">Signup</a>
             </div>
             <div className="gov-login-signup">
               <div className="gov-text">Already a Member?</div>
@@ -57,7 +57,7 @@ const GovernmentSignUp = () => {
           </form>
         </div>
       )}
-      {showLogin && <LoginComponent />}
+      {showLogin && <GovernmentLoginComponent />}
     </>
   );
 };

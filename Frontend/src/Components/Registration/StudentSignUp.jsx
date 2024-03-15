@@ -1,4 +1,5 @@
-import "../../Assets/Styles/RegistrationPage/studentSignUp.css"
+import { Link } from "react-router-dom";
+import "../../Assets/Styles/Registration/studentSignUp.css";
 
 const StudentSignUp = () => {
   return (
@@ -35,7 +36,7 @@ const StudentSignUp = () => {
           </div>
         </div>
         <div className="stud-input-field stud-button">
-          <a href="dash.html">Signup</a>
+          <Link to="/studentSurvey">Start Survey</Link>
         </div>
       </form>
     </div>

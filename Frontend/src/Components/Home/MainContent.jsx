@@ -1,4 +1,6 @@
-import homePageContentStyle from "../../Assets/Styles/HomePage/homePageContent.module.css";
+import homePageContentStyle from "../../Assets/Styles/Home/homePageContent.module.css";
+import { Link } from 'react-router-dom';
+
 
 const MainContent = () => {
   return (
@@ -15,9 +17,7 @@ const MainContent = () => {
           </p>
           
           <div className={homePageContentStyle.homePagebuttonSection}>
-            <a href="#">
-              <button>Register</button>
-            </a>
+            <Link to="/register"><button>Register</button></Link>
           </div>
         </div>
       </section>

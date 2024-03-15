@@ -1,5 +1,5 @@
-import MainContent from '../../Components/HomePage/MainContent'
-import Header from "../../Assets/Layout/Header";
+import MainContent from '../../Components/Home/MainContent'
+import Header from "../../Components/Home/Header";
 import Footer from "../../Assets/Layout/Footer";
 
 function HomePage() {

@@ -1,4 +1,4 @@
-import headerStyle from "../Styles/HomePage/header_footer.module.css";
+import headerStyle from "../../Assets/Styles/Home/header.module.css";
 
 const Header = () => {
   return (

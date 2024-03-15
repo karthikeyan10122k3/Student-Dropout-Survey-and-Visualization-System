@@ -59,13 +59,3 @@ header{
   background: #3498db;
   text-decoration: underline;
 }
-
-footer {
-  background: #6d67e4;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
