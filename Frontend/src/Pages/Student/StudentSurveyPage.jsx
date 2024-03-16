@@ -10,7 +10,6 @@ const StudentSurvey = () => {
   const handleStudentSubmit = (event) =>{
     setSubmitReason(true);
     event.preventDefault();
-    
   }
 
   return (
