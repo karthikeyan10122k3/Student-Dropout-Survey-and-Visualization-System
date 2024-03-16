@@ -33,7 +33,7 @@ const AddDropout = () => {
           <label htmlFor="instReason" className="form-label">Reason for Dropout: <span className="text-danger fw-bold">*</span></label>
           <textarea className="form-control" id="instReason" name="instReason" required defaultValue={""} />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <Link to="/institution"><button type="submit" className="btn btn-primary">Submit</button></Link>
       </form>
     </div>
   );
