@@ -1,5 +1,15 @@
+ 
+ 
+ 
+ 
+ 
+ 
  const GovernmentPage=()=>{
-  return <h1>This is Governmnet dashboard</h1>
+  return (
+      <>
+      
+      </>
+  )
 }
 
 export default GovernmentPage

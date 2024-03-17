@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../../Assets/Styles/Registration/studentSignUp.css";
+import { dropOutStudentData } from '../../users'
 
-let studentData = {}
+let studentUsers = []; 
 
 const StudentSignUp = () => {
   const [student, setStudent] = useState({
@@ -30,46 +31,62 @@ const StudentSignUp = () => {
 
   const validateForm = () => {
     let newErrors = {};
-
-    if (!student.name.trim()) {
-      newErrors.name = "Name is required";
+  
+    if (!student.studentName.trim()) {
+      newErrors.studentName = "Name is required";
     }
-    if (!student.email.trim()) {
-      newErrors.email = "Email is required";
+    if (!student.studentEmail.trim()) {
+      newErrors.studentEmail = "Email is required";
     }
-    if (!student.mobileNumber.trim()) {
-      newErrors.mobileNumber = "Mobile number is required";
+    if (!student.studentMobileNumber.trim()) {
+      newErrors.studentMobileNumber = "Mobile number is required";
     }
-    if (!student.state.trim()) {
-      newErrors.state = "State is required";
+    if (!student.studentState.trim()) {
+      newErrors.studentState = "State is required";
     }
-    if (!student.instituteCode.trim()) {
-      newErrors.instituteCode = "Institute code is required";
+    if (!student.studentInstituteCode.trim()) {
+      newErrors.studentInstituteCode = "Institute code is required";
     }
-    if (!student.emisNumber.trim()) {
-      newErrors.emisNumber = "EMIS number is required";
+    if (!student.studentEmisNumber.trim()) {
+      newErrors.studentEmisNumber = "EMIS number is required";
     }
     if (!termsAccepted) {
       newErrors.terms = "You must accept the terms and conditions";
     }
-    
-
+  
+  
     setErrors(newErrors);
-
+  
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-        studentData = {
-          studentCode: student.studentEmisNumber,
-          studentName: student.studentName,
-          studentState: student.studentInstituteCode,
-          studentEmail: student.studentEmail,
-        }
+      let studentData = {
+        studentEmisNumber: student.studentEmisNumber,
+        studentName: student.studentName,
+        studentEmail: student.studentEmail,
+        studentMobileNumber: student.studentMobileNumber,
+        studentState: student.studentState,
+        studentInstituteCode: student.studentInstituteCode,
+      };
+
+      studentUsers.push(studentData);
+      console.log(studentUsers);
+
+      setStudent({
+        studentName: "",
+        studentEmail: "",
+        studentMobileNumber: "",
+        studentState: "",
+        studentInstituteCode: "",
+        studentEmisNumber: "",
+      });
+      setTermsAccepted(false);
       window.location.href = "/studentSurvey";
     }
+    
   };
 
   return (
@@ -79,68 +96,67 @@ const StudentSignUp = () => {
         <div className="stud-input-field">
           <input
             type="text"
-            name="name"
+            name="studentName"
             placeholder="Enter your name"
-            value={student.name}
+            value={student.studentName}
             onChange={handleInputChange}
           />
-          {errors.name && <span className="error">{errors.name}</span>}
+          {errors.studentName && <span className="error">{errors.studentName}</span>}
         </div>
-        
         <div className="stud-input-field">
           <input
             type="text"
-            name="email"
+            name="studentEmail"
             placeholder="Enter your email"
-            value={student.email}
+            value={student.studentEmail}
             onChange={handleInputChange}
           />
-          {errors.email && <span className="error">{errors.email}</span>}
+          {errors.studentEmail && <span className="error">{errors.studentEmail}</span>}
         </div>
         <div className="stud-input-field">
           <input
             type="text"
-            name="mobileNumber"
+            name="studentMobileNumber"
             placeholder="Enter mobile number"
-            value={student.mobileNumber}
+            value={student.studentMobileNumber}
             onChange={handleInputChange}
           />
-          {errors.mobileNumber && (
-            <span className="error">{errors.mobileNumber}</span>
+          {errors.studentMobileNumber && (
+            <span className="error">{errors.studentMobileNumber}</span>
           )}
         </div>
         <div className="stud-input-field gov-input">
           <input
             type="text"
-            name="state"
+            name="studentState"
             placeholder="Enter your State"
-            value={student.state}
+            value={student.studentState}
             onChange={handleInputChange}
           />
-          {errors.state && <span className="error">{errors.state}</span>}
+          {errors.studentState && <span className="error">{errors.studentState}</span>}
         </div>
         <div className="stud-input-field">
           <input
             type="text"
-            name="instituteCode"
+            name="studentInstituteCode"
             placeholder="Enter Institute code"
-            value={student.instituteCode}
+            value={student.studentInstituteCode}
             onChange={handleInputChange}
           />
-          {errors.instituteCode && (
-            <span className="error">{errors.instituteCode}</span>
+          {errors.studentInstituteCode && (
+            <span className="error">{errors.studentInstituteCode}</span>
           )}
         </div>
         <div className="stud-input-field">
           <input
             type="text"
-            name="emisNumber"
+            name="studentEmisNumber"
             placeholder="Enter EMIS Number"
-            value={student.emisNumber}
+            value={student.studentEmisNumber}
             onChange={handleInputChange}
           />
-          {errors.emisNumber && (
-            <span className="error">{errors.emisNumber}</span>
+          {errors.studentEmisNumber && (
+            <span className="error">{errors.studentEmisNumber}</span>
           )}
         </div>
         <div className="stud-checkbox-text">
@@ -165,5 +181,6 @@ const StudentSignUp = () => {
   );
 };
 
-export { studentData }
+export { studentUsers }; 
 export default StudentSignUp;
+

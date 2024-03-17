@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { InstitutionLoginComponent } from "./Login";
-import '../../Assets/Styles/Registration/institutionSignUp.css'
+import "../../Assets/Styles/Registration/institutionSignUp.css";
 
-
-let institutionUsers = []
+let institutionUsers = [];
 
 const InstitutionSignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -13,9 +12,9 @@ const InstitutionSignUp = () => {
     institutionEmail: "",
     institutionCode: "",
     institutionPassword: "",
-    institutionconfirmPassword: ""
+    institutionconfirmPassword: "",
   });
-  const [termsAccepted, setTermsAccepted] = useState(false); 
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleLoginClick = () => {
@@ -30,7 +29,7 @@ const InstitutionSignUp = () => {
     const { name, value } = e.target;
     setInstitution((prevInstitution) => ({
       ...prevInstitution,
-      [name]: value
+      [name]: value,
     }));
     setErrors({ ...errors, [name]: "" });
   };
@@ -57,9 +56,12 @@ const InstitutionSignUp = () => {
     if (!institution.institutionPassword.trim()) {
       newErrors.institutionPassword = "Password is required";
     } else if (institution.institutionPassword.trim().length < 6) {
-      newErrors.institutionPassword = "Password must be at least 6 characters long";
+      newErrors.institutionPassword =
+        "Password must be at least 6 characters long";
     }
-    if (institution.institutionPassword !== institution.institutionconfirmPassword) {
+    if (
+      institution.institutionPassword !== institution.institutionconfirmPassword
+    ) {
       newErrors.institutionconfirmPassword = "Passwords do not match";
     }
     if (!termsAccepted) {
@@ -79,15 +81,25 @@ const InstitutionSignUp = () => {
         institutionName: institution.institutionName,
         institutionState: institution.institutionState,
         institutionEmail: institution.institutionEmail,
-        institutionPassword: institution.institutionPassword
+        institutionPassword: institution.institutionPassword,
       };
 
       institutionUsers.push(institutionData);
-      
+
       console.log(institutionUsers);
 
-      setShowLogin(true); 
-    } 
+      setInstitution({
+        institutionName: "",
+        institutionState: "",
+        institutionEmail: "",
+        institutionCode: "",
+        institutionPassword: "",
+        institutionconfirmPassword: "",
+      });
+      setTermsAccepted(false);
+
+      setShowLogin(true);
+    }
   };
 
   return (
@@ -104,7 +116,9 @@ const InstitutionSignUp = () => {
                 value={institution.institutionName}
                 onChange={handleInputChange}
               />
-              {errors.institutionName && <span className="error">{errors.institutionName}</span>}
+              {errors.institutionName && (
+                <span className="error">{errors.institutionName}</span>
+              )}
             </div>
             <div className="inst-input-field">
               <input
@@ -114,7 +128,9 @@ const InstitutionSignUp = () => {
                 value={institution.institutionState}
                 onChange={handleInputChange}
               />
-              {errors.institutionState && <span className="error">{errors.institutionState}</span>}
+              {errors.institutionState && (
+                <span className="error">{errors.institutionState}</span>
+              )}
             </div>
             <div className="inst-input-field">
               <input
@@ -124,7 +140,9 @@ const InstitutionSignUp = () => {
                 value={institution.institutionEmail}
                 onChange={handleInputChange}
               />
-              {errors.institutionEmail && <span className="error">{errors.institutionEmail}</span>}
+              {errors.institutionEmail && (
+                <span className="error">{errors.institutionEmail}</span>
+              )}
             </div>
             <div className="inst-input-field">
               <input
@@ -134,7 +152,9 @@ const InstitutionSignUp = () => {
                 value={institution.institutionCode}
                 onChange={handleInputChange}
               />
-              {errors.institutionCode && <span className="error">{errors.institutionCode}</span>}
+              {errors.institutionCode && (
+                <span className="error">{errors.institutionCode}</span>
+              )}
             </div>
             <div className="inst-input-field">
               <input
@@ -145,7 +165,9 @@ const InstitutionSignUp = () => {
                 value={institution.institutionPassword}
                 onChange={handleInputChange}
               />
-              {errors.institutionPassword && <span className="error">{errors.institutionPassword}</span>}
+              {errors.institutionPassword && (
+                <span className="error">{errors.institutionPassword}</span>
+              )}
             </div>
             <div className="inst-input-field">
               <input
@@ -156,21 +178,25 @@ const InstitutionSignUp = () => {
                 value={institution.institutionconfirmPassword}
                 onChange={handleInputChange}
               />
-              {errors.institutionconfirmPassword && <span className="error">{errors.institutionconfirmPassword}</span>}
+              {errors.institutionconfirmPassword && (
+                <span className="error">
+                  {errors.institutionconfirmPassword}
+                </span>
+              )}
             </div>
             <div className="inst-checkbox-text">
               <div className="inst-checkbox-content">
-                <input 
-                  type="checkbox" 
-                  id="inst-termCon" 
-                  checked={termsAccepted} 
-                  onChange={handleTermsChange} 
+                <input
+                  type="checkbox"
+                  id="inst-termCon"
+                  checked={termsAccepted}
+                  onChange={handleTermsChange}
                 />
                 <label htmlFor="inst-termCon" className="inst-text">
                   I accepted all terms and conditions
                 </label>
               </div>
-              {errors.terms && <span className="error">{errors.terms}</span>} 
+              {errors.terms && <span className="error">{errors.terms}</span>}
             </div>
             <div className="inst-input-field inst-button">
               <button type="submit">Signup</button>
@@ -178,9 +204,7 @@ const InstitutionSignUp = () => {
             <div className="inst-login-signup">
               <div className="inst-text">Already a Member?</div>
               <div className="inst-text inst-signup-link">
-                <a onClick={handleLoginClick} >
-                  Login Now
-                </a>
+                <a onClick={handleLoginClick}>Login Now</a>
               </div>
             </div>
           </form>
@@ -193,5 +217,5 @@ const InstitutionSignUp = () => {
   );
 };
 
-export { institutionUsers }
+export { institutionUsers };
 export default InstitutionSignUp;

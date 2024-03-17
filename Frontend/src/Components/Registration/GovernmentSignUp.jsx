@@ -77,6 +77,14 @@ const GovernmentSignUp = () => {
       
       console.log(governmentUsers);
 
+      setGovernment({
+        governmentState: "",
+        governmentEmail: "",
+        governmentPassword: "",
+        governmentConfirmPassword: "",
+      })
+      setTermsAccepted(false)
+
       setShowLogin(true);
     }
   };
