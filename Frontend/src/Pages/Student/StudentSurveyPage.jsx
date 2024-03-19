@@ -27,7 +27,7 @@ const StudentSurvey = () => {
               className="form-control"
               id="StudentName"
               name="StudentName"
-              required
+              
             />
           </div>
           <div className="mb-3">
@@ -39,7 +39,7 @@ const StudentSurvey = () => {
               className="form-control"
               id="StudentMNum"
               name="StudentMNum"
-              required
+              
             />
           </div>
           <div className="mb-3">
@@ -51,7 +51,7 @@ const StudentSurvey = () => {
               className="form-control"
               id="StudentDOB"
               name="StudentDOB"
-              required
+              
             />
           </div>
           <div className="mb-3">
@@ -63,7 +63,7 @@ const StudentSurvey = () => {
               className="form-control"
               id="StudentReligion"
               name="StudentReligion"
-              required
+              
             />
           </div>
           <div className="mb-3">
@@ -85,7 +85,7 @@ const StudentSurvey = () => {
               className="form-control"
               id="Reason"
               name="Reason"
-              required
+              
               defaultValue={""}
             />
           </div>

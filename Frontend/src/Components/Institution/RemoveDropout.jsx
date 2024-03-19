@@ -1,21 +1,16 @@
 import { useState } from "react";
-import { dropOutStudentData as dropOutData } from "./AddDropout"; // Importing as dropOutData to avoid naming conflict
+import axios from 'axios';
 import "../../Assets/Styles/Institution/removeDropout.css";
 
 const RemoveDropout = ({ setActiveComponent }) => {
-  const [students, setStudents] = useState(dropOutData);
+  
 
   const handleBackButton = () => {
     setActiveComponent("dashBoard");
   };
 
   const handleRemove = (index) => {
-    // Create a new array without the removed student
-    const updatedStudents = students.filter((_, i) => i !== index);
-    setStudents(updatedStudents, () => {
-      // Update the dropOutStudentData array
-      dropOutData.splice(index, 1);
-    });
+    
   };
 
   return (
@@ -35,7 +30,7 @@ const RemoveDropout = ({ setActiveComponent }) => {
           </tr>
         </thead>
         <tbody>
-          {students.map((student, index) => (
+          {/* {students.map((student, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{student.instStudentName}</td>
@@ -50,7 +45,7 @@ const RemoveDropout = ({ setActiveComponent }) => {
                 </button>
               </td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </div>

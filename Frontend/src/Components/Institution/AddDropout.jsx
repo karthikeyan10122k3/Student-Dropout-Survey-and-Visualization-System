@@ -1,17 +1,17 @@
 import "../../Assets/Styles/Institution/addDropout.css";
 import { useState } from "react";
+import axios from 'axios';
 
-let dropOutStudentData = [];
 
 const AddDropout = ({ setActiveComponent }) => {
   const [addDropout, setAddDropout] = useState({
-    instStudentName: "",
-    instStudentEMISNum: "",
-    instStudentMNum: "",
-    instStudentEmail: "",
-    instStudentDropoutdate: "",
-    instStudentCode: "",
-    instStudentReason: "",
+    dropoutStudentEMIS: "",
+    dropoutStudentName: "",
+    dropoutStudentMobile: "",
+    dropoutStudentEmail: "",
+    dropoutStudentDate: "",
+    dropoutStudentInstCode: "",
+    dropoutStudentReason: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -28,20 +28,20 @@ const AddDropout = ({ setActiveComponent }) => {
   const validateForm = () => {
     let newErrors = {};
 
-    if (!addDropout.instStudentName.trim()) {
-      newErrors.instStudentName = "Student name is required";
+    if (!addDropout.dropoutStudentName.trim()) {
+      newErrors.dropoutStudentName = "Student name is required";
     }
-    if (!addDropout.instStudentMNum.trim()) {
-      newErrors.instStudentMNum = "Student mobile number is required";
+    if (!addDropout.dropoutStudentMobile.trim()) {
+      newErrors.dropoutStudentMobile = "Student mobile number is required";
     }
-    if (!addDropout.instStudentEMISNum.trim()) {
-      newErrors.instStudentEMISNum = "Student EMIS number is required";
+    if (!addDropout.dropoutStudentEMIS.trim()) {
+      newErrors.dropoutStudentEMIS = "Student EMIS number is required";
     }
-    if (!addDropout.instStudentDropoutdate.trim()) {
-      newErrors.instStudentDropoutdate = "Dropout date is required";
+    if (!addDropout.dropoutStudentDate.trim()) {
+      newErrors.dropoutStudentDate = "Dropout date is required";
     }
-    if (!addDropout.instStudentReason.trim()) {
-      newErrors.instStudentReason = "Reason for dropout is required";
+    if (!addDropout.dropoutStudentReason.trim()) {
+      newErrors.dropoutStudentReason = "Reason for dropout is required";
     }
 
     setErrors(newErrors);
@@ -51,17 +51,17 @@ const AddDropout = ({ setActiveComponent }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      dropOutStudentData.push(addDropout);
-      console.log(dropOutStudentData);
+
+      addDropoutPostRequest(addDropout)
 
       setAddDropout({
-        instStudentName: "",
-        instStudentEMISNum: "",
-        instStudentMNum: "",
-        instStudentEmail: "",
-        instStudentCode: "",
-        instStudentDropoutdate: "",
-        instStudentReason: "",
+        dropoutStudentEMIS:"",
+        dropoutStudentName: "",
+        dropoutStudentMobile:"" ,
+        dropoutStudentEmail: "",
+        dropoutStudentInstCode: "",
+        dropoutStudentDate: "",
+        dropoutStudentReason: "",
       });
       setActiveComponent("dashBoard");
     }
@@ -75,115 +75,115 @@ const AddDropout = ({ setActiveComponent }) => {
       <h2 className="text-center mb-4">Add Dropped Out Student</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="instStudentName" className="form-label">
+          <label htmlFor="dropoutStudentName" className="form-label">
             Student Name: <span className="text-danger fw-bold">*</span>
           </label>
           <input
             type="text"
             className="form-control"
-            id="instStudentName"
-            name="instStudentName"
-            value={addDropout.instStudentName}
+            id="dropoutStudentName"
+            name="dropoutStudentName"
+            value={addDropout.dropoutStudentName}
             onChange={handleChange}
             required
           />
-          {errors.instStudentName && (
-            <span className="text-danger">{errors.instStudentName}</span>
+          {errors.dropoutStudentName && (
+            <span className="text-danger">{errors.dropoutStudentName}</span>
           )}
         </div>
         <div className="mb-3">
-          <label htmlFor="instStudentMNum" className="form-label">
+          <label htmlFor="dropoutStudentMobile" className="form-label">
             Student Mobile Number:{" "}
             <span className="text-danger fw-bold">*</span>
           </label>
           <input
             type="text"
             className="form-control"
-            id="instStudentMNum"
-            name="instStudentMNum"
-            value={addDropout.instStudentMNum}
+            id="dropoutStudentMobile"
+            name="dropoutStudentMobile"
+            value={addDropout.dropoutStudentMobile}
             onChange={handleChange}
             required
           />
-          {errors.instStudentMNum && (
-            <span className="text-danger">{errors.instStudentMNum}</span>
+          {errors.dropoutStudentMobile && (
+            <span className="text-danger">{errors.dropoutStudentMobile}</span>
           )}
         </div>
         <div className="mb-3">
-          <label htmlFor="instStudentEmail" className="form-label">
+          <label htmlFor="dropoutStudentEmail" className="form-label">
             Student Email:{" "}
           </label>
           <input
             type="email"
             className="form-control"
-            id="instStudentEmail"
-            name="instStudentEmail"
-            value={addDropout.instStudentEmail}
+            id="dropoutStudentEmail"
+            name="dropoutStudentEmail"
+            value={addDropout.dropoutStudentEmail}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="instStudentEMISNum" className="form-label">
+          <label htmlFor="dropoutStudentEMIS" className="form-label">
             Student EMIS number: <span className="text-danger fw-bold">*</span>
           </label>
           <input
             type="text"
             className="form-control"
-            id="instStudentEMISNum"
-            name="instStudentEMISNum"
-            value={addDropout.instStudentEMISNum}
+            id="dropoutStudentEMIS"
+            name="dropoutStudentEMIS"
+            value={addDropout.dropoutStudentEMIS}
             onChange={handleChange}
             required
           />
-          {errors.instStudentEMISNum && (
-            <span className="text-danger">{errors.instStudentEMISNum}</span>
+          {errors.dropoutStudentEMIS && (
+            <span className="text-danger">{errors.dropoutStudentEMIS}</span>
           )}
         </div>
         <div className="mb-3">
-          <label htmlFor="instStudentCode" className="form-label">
+          <label htmlFor="dropoutStudentInstCode" className="form-label">
             Institution Code:{" "}
           </label>
           <input
             type="text"
             className="form-control"
-            id="instStudentCode"
-            name="instStudentCode"
-            value={addDropout.instStudentCode}
+            id="dropoutStudentInstCode"
+            name="dropoutStudentInstCode"
+            value={addDropout.dropoutStudentInstCode}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="instStudentDropoutdate" className="form-label">
+          <label htmlFor="dropoutStudentDate" className="form-label">
             Dropout Date: <span className="text-danger fw-bold">*</span>
           </label>
           <input
             type="date"
             className="form-control"
-            id="instStudentDropoutdate"
-            name="instStudentDropoutdate"
-            value={addDropout.instStudentDropoutdate}
+            id="dropoutStudentDate"
+            name="dropoutStudentDate"
+            value={addDropout.dropoutStudentDate}
             onChange={handleChange}
             required
           />
-          {errors.instStudentDropoutdate && (
-            <span className="text-danger">{errors.instStudentDropoutdate}</span>
+          {errors.dropoutStudentDate && (
+            <span className="text-danger">{errors.dropoutStudentDate}</span>
           )}
         </div>
         <div className="mb-3">
-          <label htmlFor="instStudentReason" className="form-label">
+          <label htmlFor="dropoutStudentReason" className="form-label">
             Reason for Dropout: <span className="text-danger fw-bold">*</span>
           </label>
           <input
             type="text"
             className="form-control"
-            id="instStudentReason"
-            name="instStudentReason"
-            value={addDropout.instStudentReason}
+            id="dropoutStudentReason"
+            name="dropoutStudentReason"
+            value={addDropout.dropoutStudentReason}
             onChange={handleChange}
             required
           />
-          {errors.instStudentReason && (
-            <span className="text-danger">{errors.instStudentReason}</span>
+          {errors.dropoutStudentReason && (
+            <span className="text-danger">{errors.dropoutStudentReason}</span>
           )}
         </div>
 
@@ -195,5 +195,24 @@ const AddDropout = ({ setActiveComponent }) => {
   );
 };
 
-export { dropOutStudentData };
+const addDropoutPostRequest = async(dropoutStudentData) =>{
+  try {
+    await axios.post('http://localhost:8000/addDropout', dropoutStudentData );
+    console.log('Dropout Student added successfully');
+  } catch (error) {
+    console.error('Error adding Dropout Student:', error);
+  }
+}
+
+const studentAuthentication = async (studentData) => {
+  try {
+    const response = await axios.get('http://localhost:8000/getDropoutStudents');
+    const students = response.data;
+    
+     
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+  }
+}
+
 export default AddDropout;

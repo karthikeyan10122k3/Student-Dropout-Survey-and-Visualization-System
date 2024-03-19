@@ -1,5 +1,6 @@
 import "../../Assets/Styles/Registration/registerPage.css";
 
+
 import RegisterContent from "../../Components/Registration/RegisterContent";
 
 function RegisterPage() {

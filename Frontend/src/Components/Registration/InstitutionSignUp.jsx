@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { InstitutionLoginComponent } from "./Login";
 import "../../Assets/Styles/Registration/institutionSignUp.css";
+import axios from 'axios';
 
-let institutionUsers = [];
 
 const InstitutionSignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -73,7 +73,7 @@ const InstitutionSignUp = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (validateForm()) {
       const institutionData = {
@@ -83,10 +83,16 @@ const InstitutionSignUp = () => {
         institutionEmail: institution.institutionEmail,
         institutionPassword: institution.institutionPassword,
       };
+      // try {
+      //   console.log(institutionData);
+      //   await axios.post('http://localhost:8000/newInstitutionUser/signup', institutionData );
+      //   console.log('Institution User added successfully');
+      // } catch (error) {
+      //   console.error('Error adding Institution User:', error);
+      // }
 
-      institutionUsers.push(institutionData);
+      InstitutionPostRequest(institutionData)
 
-      console.log(institutionUsers);
 
       setInstitution({
         institutionName: "",
@@ -204,7 +210,7 @@ const InstitutionSignUp = () => {
             <div className="inst-login-signup">
               <div className="inst-text">Already a Member?</div>
               <div className="inst-text inst-signup-link">
-                <a onClick={handleLoginClick}>Login Now</a>
+                <a href="#" onClick={handleLoginClick}>Login Now</a>
               </div>
             </div>
           </form>
@@ -217,5 +223,14 @@ const InstitutionSignUp = () => {
   );
 };
 
-export { institutionUsers };
+const InstitutionPostRequest = async(institutionData) =>{
+  try {
+    console.log(institutionData);
+    await axios.post('http://localhost:8000/newInstitutionUser/signup', institutionData );
+    console.log('Institution User added successfully');
+  } catch (error) {
+    console.error('Error adding Institution User:', error);
+  }
+}
+
 export default InstitutionSignUp;

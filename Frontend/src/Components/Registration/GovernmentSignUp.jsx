@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { GovernmentLoginComponent } from "./Login";
 import '../../Assets/Styles/Registration/institutionSignUp.css';
+import axios from 'axios';
 
-let governmentUsers = [];
 
 const GovernmentSignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -47,10 +47,11 @@ const GovernmentSignUp = () => {
     }
     if (!government.governmentPassword.trim()) {
       newErrors.governmentPassword = "Password is required";
-    } else if (government.governmentPassword.trim().length < 6) {
-      newErrors.governmentPassword =
-        "Password must be at least 6 characters long";
-    }
+    } 
+    // else if (government.governmentPassword.trim().length < 6) {
+    //   newErrors.governmentPassword =
+    //     "Password must be at least 6 characters long";
+    // }
     if (government.governmentPassword !== government.governmentConfirmPassword) {
       newErrors.governmentConfirmPassword = "Passwords do not match";
     }
@@ -63,19 +64,17 @@ const GovernmentSignUp = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
 
-      const governmentData = {
+      let governmentData = {
         governmentState: government.governmentState,
         governmentEmail: government.governmentEmail,
         governmentPassword: government.governmentPassword,
       };
 
-      governmentUsers.push(governmentData);
-      
-      console.log(governmentUsers);
+      govPostRequest(governmentData)
 
       setGovernment({
         governmentState: "",
@@ -83,8 +82,8 @@ const GovernmentSignUp = () => {
         governmentPassword: "",
         governmentConfirmPassword: "",
       })
-      setTermsAccepted(false)
 
+      setTermsAccepted(false)
       setShowLogin(true);
     }
   };
@@ -93,7 +92,7 @@ const GovernmentSignUp = () => {
       {!showLogin && (
         <div className="inst-form inst-signup">
           <p>Government Authority Signup</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
             <div className="inst-input-field">
               <input
                 type="text"
@@ -154,7 +153,7 @@ const GovernmentSignUp = () => {
             <div className="inst-login-signup">
               <div className="inst-text">Already a Member?</div>
               <div className="inst-text inst-signup-link">
-                <a onClick={handleLoginClick}>
+                <a onClick={handleLoginClick} href="#">
                   Login Now
                 </a>
               </div>
@@ -169,5 +168,14 @@ const GovernmentSignUp = () => {
   );
 };
 
-export { governmentUsers };
+const govPostRequest = async(governmentData) =>{
+  try {
+    console.log(governmentData);
+    await axios.post('http://localhost:8000/newGovUser/signup', governmentData );
+    console.log('Government User added successfully');
+  } catch (error) {
+    console.error('Error adding Government User:', error);
+  }
+}
+
 export default GovernmentSignUp;

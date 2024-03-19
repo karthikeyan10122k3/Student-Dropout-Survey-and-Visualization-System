@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../../Assets/Styles/Registration/login.css";
+import axios from 'axios';
 
 export const InstitutionLoginComponent = ({ handleSignupClick }) => {
   const [loginData, setLoginData] = useState({
@@ -28,6 +29,7 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
     if (!loginData.institutionPassword.trim()) {
       newErrors.institutionPassword = "Password is required";
     }
+    
 
     setErrors(newErrors);
 
@@ -37,7 +39,7 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      window.location.href = "/institution"
+      handleAuthenticationInstitution(loginData)
     }
   };
 
@@ -110,6 +112,26 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
   );
 };
 
+const handleAuthenticationInstitution = async (loginData) => {
+  try {
+    const response = await axios.get('http://localhost:8000/getInstitutionUser/login');
+    const institutions = response.data;
+    console.log(institutions);
+    
+    const loggedInInstitution = institutions.find(institution => institution.institutionEmail === loginData.institutionEmail && institution.institutionPassword === loginData.institutionPassword);
+    console.log(loggedInInstitution);
+
+    if (loggedInInstitution) {
+      alert('Login successful!');
+
+      window.location.href = "/institution";
+    } else {
+      alert('Invalid credentials. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error fetching institution data:', error);
+  }
+}
 
 export const GovernmentLoginComponent = ({ handleSignupClick }) => {
   const [loginData, setLoginData] = useState({
@@ -148,7 +170,7 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      window.location.href = "/government"
+      handleAuthenticationGovernment(loginData)
     }
   };
 
@@ -211,6 +233,7 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
           <a
             className="log-text log-signup-link"
             onClick={handleSignupClick}
+            href="#"
           >
             Signup Now
           </a>
@@ -220,3 +243,21 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
   );
 };
 
+const handleAuthenticationGovernment = async (loginData) => {
+  try {
+    const response = await axios.get('http://localhost:8000/getGovernmentUser/login');
+    const governments = response.data;
+    
+    const loggedInUser = governments.find(user => user.governmentEmail === loginData.governmentEmail && user.governmentPassword === loginData.governmentPassword);
+
+    if (loggedInUser) {
+      console.log('Login successful!');
+
+      window.location.href = "/government";
+    } else {
+      alert('Invalid credentials. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error fetching government user data:', error);
+  }
+}

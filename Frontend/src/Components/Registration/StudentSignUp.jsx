@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../../Assets/Styles/Registration/studentSignUp.css";
-import { dropOutStudentData } from '../../users'
+import axios from 'axios';
 
-let studentUsers = []; 
+
 
 const StudentSignUp = () => {
   const [student, setStudent] = useState({
@@ -63,28 +63,19 @@ const StudentSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      let studentData = {
-        studentEmisNumber: student.studentEmisNumber,
-        studentName: student.studentName,
-        studentEmail: student.studentEmail,
-        studentMobileNumber: student.studentMobileNumber,
-        studentState: student.studentState,
-        studentInstituteCode: student.studentInstituteCode,
-      };
 
-      studentUsers.push(studentData);
-      console.log(studentUsers);
+      studentAuthentication(student,setStudent,setTermsAccepted)
+      // let studentData = {
+      //   studentEmisNumber: student.studentEmisNumber,
+      //   studentName: student.studentName,
+      //   studentEmail: student.studentEmail,
+      //   studentMobileNumber: student.studentMobileNumber,
+      //   studentState: student.studentState,
+      //   studentInstituteCode: student.studentInstituteCode,
+      // };
 
-      setStudent({
-        studentName: "",
-        studentEmail: "",
-        studentMobileNumber: "",
-        studentState: "",
-        studentInstituteCode: "",
-        studentEmisNumber: "",
-      });
-      setTermsAccepted(false);
-      window.location.href = "/studentSurvey";
+      // studentPostRequest(studentData)
+      
     }
     
   };
@@ -181,6 +172,38 @@ const StudentSignUp = () => {
   );
 };
 
-export { studentUsers }; 
+
+const studentAuthentication = async (studentData,setStudent,setTermsAccepted) => {
+  try {
+    const response = await axios.get('http://localhost:8000/getDropoutStudents');
+    const students = response.data;
+    
+    const studentExists = students.find(student => 
+      student.dropoutStudentEMIS === studentData.studentEmisNumber &&
+      student.dropoutStudentName === studentData.studentName &&
+      student.dropoutStudentInstCode === studentData.studentInstituteCode
+    );
+
+    if (studentExists) {
+      window.location.href = "/studentSurvey";
+    } else {
+      alert('The student is not registered as a dropout.');
+
+      setStudent({
+        studentName: "",
+        studentEmail: "",
+        studentMobileNumber: "",
+        studentState: "",
+        studentInstituteCode: "",
+        studentEmisNumber: "",
+      });
+      setTermsAccepted(false);
+    }
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+  }
+}
+
+
 export default StudentSignUp;
 
