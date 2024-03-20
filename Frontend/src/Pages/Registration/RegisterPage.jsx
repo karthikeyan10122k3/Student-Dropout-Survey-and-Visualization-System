@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import "../../Assets/Styles/Registration/registerPage.css";
 
 

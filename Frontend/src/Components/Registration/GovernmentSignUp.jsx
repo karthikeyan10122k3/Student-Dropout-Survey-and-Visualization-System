@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { GovernmentLoginComponent } from "./Login";
-import '../../Assets/Styles/Registration/institutionSignUp.css';
-import axios from 'axios';
-
+import "../../Assets/Styles/Registration/institutionSignUp.css"; // Importing the same CSS file used in InstitutionSignUp
+import axios from "axios";
 
 const GovernmentSignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -47,12 +46,10 @@ const GovernmentSignUp = () => {
     }
     if (!government.governmentPassword.trim()) {
       newErrors.governmentPassword = "Password is required";
-    } 
-    // else if (government.governmentPassword.trim().length < 6) {
-    //   newErrors.governmentPassword =
-    //     "Password must be at least 6 characters long";
-    // }
-    if (government.governmentPassword !== government.governmentConfirmPassword) {
+    }
+    if (
+      government.governmentPassword !== government.governmentConfirmPassword
+    ) {
       newErrors.governmentConfirmPassword = "Passwords do not match";
     }
     if (!termsAccepted) {
@@ -64,118 +61,150 @@ const GovernmentSignUp = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-
       let governmentData = {
         governmentState: government.governmentState,
         governmentEmail: government.governmentEmail,
         governmentPassword: government.governmentPassword,
       };
 
-      govPostRequest(governmentData)
+      govPostRequest(governmentData);
 
       setGovernment({
         governmentState: "",
         governmentEmail: "",
         governmentPassword: "",
         governmentConfirmPassword: "",
-      })
+      });
 
-      setTermsAccepted(false)
+      setTermsAccepted(false);
       setShowLogin(true);
     }
   };
   return (
     <>
       {!showLogin && (
-        <div className="inst-form inst-signup">
-          <p>Government Authority Signup</p>
-          <form onSubmit={handleSubmit} >
-            <div className="inst-input-field">
-              <input
-                type="text"
-                name="governmentState"
-                placeholder="Enter State"
-                value={government.governmentState}
-                onChange={handleInputChange}
-              />
-              {errors.governmentState && <span className="error">{errors.governmentState}</span>}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="text"
-                name="governmentEmail"
-                placeholder="Enter Email"
-                value={government.governmentEmail}
-                onChange={handleInputChange}
-              />
-              {errors.governmentEmail && <span className="error">{errors.governmentEmail}</span>}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="password"
-                name="governmentPassword"
-                placeholder="Create a password"
-                value={government.governmentPassword}
-                onChange={handleInputChange}
-              />
-              {errors.governmentPassword && <span className="error">{errors.governmentPassword}</span>}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="password"
-                name="governmentConfirmPassword"
-                placeholder="Confirm password"
-                value={government.governmentConfirmPassword}
-                onChange={handleInputChange}
-              />
-              {errors.governmentConfirmPassword && <span className="error">{errors.governmentConfirmPassword}</span>}
-            </div>
-            <div className="inst-checkbox-text">
-              <div className="inst-checkbox-content">
-                <input 
-                  type="checkbox" 
-                  id="inst-termCon" 
-                  checked={termsAccepted} 
-                  onChange={handleTermsChange} 
-                />
-                <label htmlFor="inst-termCon" className="inst-text">
-                  I accept all terms and conditions
-                </label>
+        <div className="container smaller-container mt-2">
+          {" "}
+          {/* Updated class name to match InstitutionSignUp */}
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <div className="card border-primary">
+                <div className="card-body">
+                  <h5 className="card-title text-blue font-weight-bolder text-primary">
+                    Government Authority Signup
+                  </h5>
+                  <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control mb-3"
+                        name="governmentState"
+                        placeholder="Enter State"
+                        value={government.governmentState}
+                        onChange={handleInputChange}
+                      />
+                      {errors.governmentState && (
+                        <span className="text-danger">
+                          {errors.governmentState}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control mb-3"
+                        name="governmentEmail"
+                        placeholder="Enter Email"
+                        value={government.governmentEmail}
+                        onChange={handleInputChange}
+                      />
+                      {errors.governmentEmail && (
+                        <span className="text-danger">
+                          {errors.governmentEmail}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control mb-3"
+                        name="governmentPassword"
+                        placeholder="Create a password"
+                        value={government.governmentPassword}
+                        onChange={handleInputChange}
+                      />
+                      {errors.governmentPassword && (
+                        <span className="text-danger">
+                          {errors.governmentPassword}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control mb-3"
+                        name="governmentConfirmPassword"
+                        placeholder="Confirm password"
+                        value={government.governmentConfirmPassword}
+                        onChange={handleInputChange}
+                      />
+                      {errors.governmentConfirmPassword && (
+                        <span className="text-danger">
+                          {errors.governmentConfirmPassword}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="gov-termCon"
+                        checked={termsAccepted}
+                        onChange={handleTermsChange}
+                      />
+                      <label className="form-check-label" htmlFor="gov-termCon">
+                        I accept all terms and conditions
+                      </label>
+                      {errors.terms && (
+                        <span className="text-danger">{errors.terms}</span>
+                      )}
+                    </div>
+                    <button type="submit" className="btn btn-primary my-2">
+                      Signup
+                    </button>
+                    <div className="inst-login-signup">
+                      <div className="inst-text">Already a Member?</div>
+                      <div className="inst-text inst-signup-link">
+                        <a onClick={handleLoginClick} href="#">
+                          Login Now
+                        </a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
-              {errors.terms && <span className="error">{errors.terms}</span>} 
             </div>
-            <div className="inst-input-field inst-button">
-              <button type="submit">Signup</button>
-            </div>
-            <div className="inst-login-signup">
-              <div className="inst-text">Already a Member?</div>
-              <div className="inst-text inst-signup-link">
-                <a onClick={handleLoginClick} href="#">
-                  Login Now
-                </a>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
       )}
       {showLogin && (
-        <GovernmentLoginComponent handleSignupClick={handleSignupClick}  />
+        <GovernmentLoginComponent handleSignupClick={handleSignupClick} />
       )}
     </>
   );
 };
 
-const govPostRequest = async(governmentData) =>{
+const govPostRequest = async (governmentData) => {
   try {
     console.log(governmentData);
-    await axios.post('http://localhost:8000/newGovUser/signup', governmentData );
-    console.log('Government User added successfully');
+    await axios.post("http://localhost:8000/newGovUser/signup", governmentData);
+    console.log("Government User added successfully");
   } catch (error) {
-    console.error('Error adding Government User:', error);
+    console.error("Error adding Government User:", error);
   }
-}
+};
 
 export default GovernmentSignUp;

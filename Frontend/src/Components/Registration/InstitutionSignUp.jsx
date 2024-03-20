@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { InstitutionLoginComponent } from "./Login";
 import "../../Assets/Styles/Registration/institutionSignUp.css";
-import axios from 'axios';
-
+import axios from "axios";
 
 const InstitutionSignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -73,7 +72,7 @@ const InstitutionSignUp = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
       const institutionData = {
@@ -83,16 +82,8 @@ const InstitutionSignUp = () => {
         institutionEmail: institution.institutionEmail,
         institutionPassword: institution.institutionPassword,
       };
-      // try {
-      //   console.log(institutionData);
-      //   await axios.post('http://localhost:8000/newInstitutionUser/signup', institutionData );
-      //   console.log('Institution User added successfully');
-      // } catch (error) {
-      //   console.error('Error adding Institution User:', error);
-      // }
 
-      InstitutionPostRequest(institutionData)
-
+      InstitutionPostRequest(institutionData);
 
       setInstitution({
         institutionName: "",
@@ -111,109 +102,139 @@ const InstitutionSignUp = () => {
   return (
     <>
       {!showLogin && (
-        <div className="inst-form inst-signup">
-          <p>Institution Management signin</p>
-          <form onSubmit={handleSubmit}>
-            <div className="inst-input-field">
-              <input
-                type="text"
-                name="institutionName"
-                placeholder="Enter Institution name"
-                value={institution.institutionName}
-                onChange={handleInputChange}
-              />
-              {errors.institutionName && (
-                <span className="error">{errors.institutionName}</span>
-              )}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="text"
-                name="institutionState"
-                placeholder="Enter your State"
-                value={institution.institutionState}
-                onChange={handleInputChange}
-              />
-              {errors.institutionState && (
-                <span className="error">{errors.institutionState}</span>
-              )}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="text"
-                name="institutionEmail"
-                placeholder="Enter Institution email"
-                value={institution.institutionEmail}
-                onChange={handleInputChange}
-              />
-              {errors.institutionEmail && (
-                <span className="error">{errors.institutionEmail}</span>
-              )}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="text"
-                name="institutionCode"
-                placeholder="Enter Institution Code"
-                value={institution.institutionCode}
-                onChange={handleInputChange}
-              />
-              {errors.institutionCode && (
-                <span className="error">{errors.institutionCode}</span>
-              )}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="password"
-                name="institutionPassword"
-                className="inst-password"
-                placeholder="Create a password"
-                value={institution.institutionPassword}
-                onChange={handleInputChange}
-              />
-              {errors.institutionPassword && (
-                <span className="error">{errors.institutionPassword}</span>
-              )}
-            </div>
-            <div className="inst-input-field">
-              <input
-                type="password"
-                name="institutionconfirmPassword"
-                className="inst-password"
-                placeholder="Confirm password"
-                value={institution.institutionconfirmPassword}
-                onChange={handleInputChange}
-              />
-              {errors.institutionconfirmPassword && (
-                <span className="error">
-                  {errors.institutionconfirmPassword}
-                </span>
-              )}
-            </div>
-            <div className="inst-checkbox-text">
-              <div className="inst-checkbox-content">
-                <input
-                  type="checkbox"
-                  id="inst-termCon"
-                  checked={termsAccepted}
-                  onChange={handleTermsChange}
-                />
-                <label htmlFor="inst-termCon" className="inst-text">
-                  I accepted all terms and conditions
-                </label>
+        <div className="container smaller-container mt-2">
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <div className="card border-primary">
+                <div className="card-body">
+                  <h5 className="card-title text-blue font-weight-bolder text-primary">
+                    Institution Management Sign Up
+                  </h5>
+                  <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control mb-3"
+                        name="institutionName"
+                        placeholder="Enter Institution name"
+                        value={institution.institutionName}
+                        onChange={handleInputChange}
+                      />
+                      {errors.institutionName && (
+                        <span className="text-danger">
+                          {errors.institutionName}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control mb-3"
+                        name="institutionState"
+                        placeholder="Enter your State"
+                        value={institution.institutionState}
+                        onChange={handleInputChange}
+                      />
+                      {errors.institutionState && (
+                        <span className="text-danger">
+                          {errors.institutionState}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control mb-3"
+                        name="institutionEmail"
+                        placeholder="Enter Institution email"
+                        value={institution.institutionEmail}
+                        onChange={handleInputChange}
+                      />
+                      {errors.institutionEmail && (
+                        <span className="text-danger">
+                          {errors.institutionEmail}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control mb-3"
+                        name="institutionCode"
+                        placeholder="Enter Institution Code"
+                        value={institution.institutionCode}
+                        onChange={handleInputChange}
+                      />
+                      {errors.institutionCode && (
+                        <span className="text-danger">
+                          {errors.institutionCode}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control mb-3"
+                        name="institutionPassword"
+                        placeholder="Create a password"
+                        value={institution.institutionPassword}
+                        onChange={handleInputChange}
+                      />
+                      {errors.institutionPassword && (
+                        <span className="text-danger">
+                          {errors.institutionPassword}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control mb-3"
+                        name="institutionconfirmPassword"
+                        placeholder="Confirm password"
+                        value={institution.institutionconfirmPassword}
+                        onChange={handleInputChange}
+                      />
+                      {errors.institutionconfirmPassword && (
+                        <span className="text-danger">
+                          {errors.institutionconfirmPassword}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="inst-termCon"
+                        checked={termsAccepted}
+                        onChange={handleTermsChange}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="inst-termCon"
+                      >
+                        I accepted all terms and conditions
+                      </label>
+                      {errors.terms && (
+                        <span className="text-danger">{errors.terms}</span>
+                      )}
+                    </div>
+                    <button type="submit" className="btn btn-primary my-2">
+                      Sign Up
+                    </button>
+                    <div className="inst-login-signup">
+                      <div className="inst-text">Already a Member?</div>
+                      <div className="inst-text inst-signup-link">
+                        <a href="#" onClick={handleLoginClick}>
+                          Login Now
+                        </a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
-              {errors.terms && <span className="error">{errors.terms}</span>}
             </div>
-            <div className="inst-input-field inst-button">
-              <button type="submit">Signup</button>
-            </div>
-            <div className="inst-login-signup">
-              <div className="inst-text">Already a Member?</div>
-              <div className="inst-text inst-signup-link">
-                <a href="#" onClick={handleLoginClick}>Login Now</a>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
       )}
       {showLogin && (
@@ -223,14 +244,17 @@ const InstitutionSignUp = () => {
   );
 };
 
-const InstitutionPostRequest = async(institutionData) =>{
+const InstitutionPostRequest = async (institutionData) => {
   try {
     console.log(institutionData);
-    await axios.post('http://localhost:8000/newInstitutionUser/signup', institutionData );
-    console.log('Institution User added successfully');
+    await axios.post(
+      "http://localhost:8000/newInstitutionUser/signup",
+      institutionData
+    );
+    console.log("Institution User added successfully");
   } catch (error) {
-    console.error('Error adding Institution User:', error);
+    console.error("Error adding Institution User:", error);
   }
-}
+};
 
 export default InstitutionSignUp;

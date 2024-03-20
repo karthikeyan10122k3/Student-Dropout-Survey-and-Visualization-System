@@ -1,8 +1,6 @@
 import { useState } from "react";
-import "../../Assets/Styles/Registration/studentSignUp.css";
 import axios from 'axios';
-
-
+import "../../Assets/Styles/Registration/studentSignUp.css";
 
 const StudentSignUp = () => {
   const [student, setStudent] = useState({
@@ -54,7 +52,6 @@ const StudentSignUp = () => {
       newErrors.terms = "You must accept the terms and conditions";
     }
   
-  
     setErrors(newErrors);
   
     return Object.keys(newErrors).length === 0;
@@ -63,115 +60,106 @@ const StudentSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-
-      studentAuthentication(student,setStudent,setTermsAccepted)
-      // let studentData = {
-      //   studentEmisNumber: student.studentEmisNumber,
-      //   studentName: student.studentName,
-      //   studentEmail: student.studentEmail,
-      //   studentMobileNumber: student.studentMobileNumber,
-      //   studentState: student.studentState,
-      //   studentInstituteCode: student.studentInstituteCode,
-      // };
-
-      // studentPostRequest(studentData)
-      
+      studentAuthentication(student, setStudent, setTermsAccepted);
     }
-    
   };
 
   return (
-    <div className="stud-form stud-signup">
-      <p>Student Sign-Up</p>
-      <form onSubmit={handleSubmit}>
-        <div className="stud-input-field">
-          <input
-            type="text"
-            name="studentName"
-            placeholder="Enter your name"
-            value={student.studentName}
-            onChange={handleInputChange}
-          />
-          {errors.studentName && <span className="error">{errors.studentName}</span>}
-        </div>
-        <div className="stud-input-field">
-          <input
-            type="text"
-            name="studentEmail"
-            placeholder="Enter your email"
-            value={student.studentEmail}
-            onChange={handleInputChange}
-          />
-          {errors.studentEmail && <span className="error">{errors.studentEmail}</span>}
-        </div>
-        <div className="stud-input-field">
-          <input
-            type="text"
-            name="studentMobileNumber"
-            placeholder="Enter mobile number"
-            value={student.studentMobileNumber}
-            onChange={handleInputChange}
-          />
-          {errors.studentMobileNumber && (
-            <span className="error">{errors.studentMobileNumber}</span>
-          )}
-        </div>
-        <div className="stud-input-field gov-input">
-          <input
-            type="text"
-            name="studentState"
-            placeholder="Enter your State"
-            value={student.studentState}
-            onChange={handleInputChange}
-          />
-          {errors.studentState && <span className="error">{errors.studentState}</span>}
-        </div>
-        <div className="stud-input-field">
-          <input
-            type="text"
-            name="studentInstituteCode"
-            placeholder="Enter Institute code"
-            value={student.studentInstituteCode}
-            onChange={handleInputChange}
-          />
-          {errors.studentInstituteCode && (
-            <span className="error">{errors.studentInstituteCode}</span>
-          )}
-        </div>
-        <div className="stud-input-field">
-          <input
-            type="text"
-            name="studentEmisNumber"
-            placeholder="Enter EMIS Number"
-            value={student.studentEmisNumber}
-            onChange={handleInputChange}
-          />
-          {errors.studentEmisNumber && (
-            <span className="error">{errors.studentEmisNumber}</span>
-          )}
-        </div>
-        <div className="stud-checkbox-text">
-          <div className="stud-checkbox-content">
-            <input
-              type="checkbox"
-              id="stud-termCon"
-              checked={termsAccepted}
-              onChange={handleTermsChange}
-            />
-            <label htmlFor="stud-termCon" className="stud-text">
-              I accepted all terms and conditions
-            </label>
+    <div className="container smaller-container mt-2">
+      <div className="row">
+        <div className="col-md-8 offset-md-2">
+          <div className="card border-primary">
+            <div className="card-body">
+              <h5 className="card-title text-primary font-weight-bold">Student Sign-Up</h5>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control mb-3"
+                    name="studentName"
+                    placeholder="Enter your name"
+                    value={student.studentName}
+                    onChange={handleInputChange}
+                  />
+                  {errors.studentName && <span className="text-danger">{errors.studentName}</span>}
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control mb-3"
+                    name="studentEmail"
+                    placeholder="Enter your email"
+                    value={student.studentEmail}
+                    onChange={handleInputChange}
+                  />
+                  {errors.studentEmail && <span className="text-danger">{errors.studentEmail}</span>}
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control mb-3"
+                    name="studentMobileNumber"
+                    placeholder="Enter mobile number"
+                    value={student.studentMobileNumber}
+                    onChange={handleInputChange}
+                  />
+                  {errors.studentMobileNumber && <span className="text-danger">{errors.studentMobileNumber}</span>}
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control mb-3"
+                    name="studentState"
+                    placeholder="Enter your State"
+                    value={student.studentState}
+                    onChange={handleInputChange}
+                  />
+                  {errors.studentState && <span className="text-danger">{errors.studentState}</span>}
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control mb-3"
+                    name="studentInstituteCode"
+                    placeholder="Enter Institute code"
+                    value={student.studentInstituteCode}
+                    onChange={handleInputChange}
+                  />
+                  {errors.studentInstituteCode && <span className="text-danger">{errors.studentInstituteCode}</span>}
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control mb-3"
+                    name="studentEmisNumber"
+                    placeholder="Enter EMIS Number"
+                    value={student.studentEmisNumber}
+                    onChange={handleInputChange}
+                  />
+                  {errors.studentEmisNumber && <span className="text-danger">{errors.studentEmisNumber}</span>}
+                </div>
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="stud-termCon"
+                    checked={termsAccepted}
+                    onChange={handleTermsChange}
+                  />
+                  <label className="form-check-label" htmlFor="stud-termCon">
+                    I accepted all terms and conditions
+                  </label>
+                  {errors.terms && <span className="text-danger">{errors.terms}</span>}
+                </div>
+                <button type="submit" className="btn btn-primary mt-3">Start Survey</button>
+              </form>
+            </div>
           </div>
-          {errors.terms && <span className="error">{errors.terms}</span>}
         </div>
-        <div className="stud-input-field stud-button">
-          <button type="submit">Start Survey</button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };
-
 
 const studentAuthentication = async (studentData,setStudent,setTermsAccepted) => {
   try {
@@ -204,6 +192,4 @@ const studentAuthentication = async (studentData,setStudent,setTermsAccepted) =>
   }
 }
 
-
 export default StudentSignUp;
-

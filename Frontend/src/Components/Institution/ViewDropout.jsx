@@ -3,25 +3,19 @@ import axios from 'axios';
 
 const ViewDropout = ({ setActiveComponent }) => {
   const [droppedOut, setDroppedOut] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDropoutStudents = async () => {
       try {
-        const response = await getDroppedOutStudent();
+        const response = await axios.get("http://localhost:8000/getDropoutStudents");
         setDroppedOut(response.data);
       } catch (err) {
         console.log(err);
-        setError("Error fetching data");
       }
     };
 
-    fetchData();
+    fetchDropoutStudents();
   }, []);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   const handleBackButton = () => {
     setActiveComponent("dashBoard");
@@ -46,31 +40,21 @@ const ViewDropout = ({ setActiveComponent }) => {
           </tr>
         </thead>
         <tbody>
-        {droppedOut && droppedOut.map((student, index) => (
-  <tr key={index}>
-    <td>{index + 1}</td>
-    <td>{student.dropoutStudentName}</td>
-    <td>{student.dropoutStudentEMIS}</td>
-    <td>{student.dropoutStudentMobile}</td>
-    <td>{student.dropoutStudentEmail}</td>
-    <td>{student.dropoutStudentDate}</td>
-    <td>{student.dropoutStudentReason}</td>
-  </tr>
-))}
+          {droppedOut.map((student, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{student.dropoutStudentName}</td>
+              <td>{student.dropoutStudentEMIS}</td>
+              <td>{student.dropoutStudentMobile}</td>
+              <td>{student.dropoutStudentEmail}</td>
+              <td>{student.dropoutStudentDate}</td>
+              <td>{student.dropoutStudentReason}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
-};
-
-const getDroppedOutStudent = async () => {
-  try {
-    const response = await axios.get("http://localhost:8000/getDropoutStudents");
-    return response.data;
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
 };
 
 export default ViewDropout;
