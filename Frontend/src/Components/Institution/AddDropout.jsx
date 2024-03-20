@@ -85,7 +85,7 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentName"
             value={addDropout.dropoutStudentName}
             onChange={handleChange}
-            required
+            
           />
           {errors.dropoutStudentName && (
             <span className="text-danger">{errors.dropoutStudentName}</span>
@@ -103,7 +103,7 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentMobile"
             value={addDropout.dropoutStudentMobile}
             onChange={handleChange}
-            required
+            
           />
           {errors.dropoutStudentMobile && (
             <span className="text-danger">{errors.dropoutStudentMobile}</span>
@@ -133,7 +133,7 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentEMIS"
             value={addDropout.dropoutStudentEMIS}
             onChange={handleChange}
-            required
+            
           />
           {errors.dropoutStudentEMIS && (
             <span className="text-danger">{errors.dropoutStudentEMIS}</span>
@@ -163,7 +163,7 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentDate"
             value={addDropout.dropoutStudentDate}
             onChange={handleChange}
-            required
+            
           />
           {errors.dropoutStudentDate && (
             <span className="text-danger">{errors.dropoutStudentDate}</span>
@@ -180,7 +180,7 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentReason"
             value={addDropout.dropoutStudentReason}
             onChange={handleChange}
-            required
+            
           />
           {errors.dropoutStudentReason && (
             <span className="text-danger">{errors.dropoutStudentReason}</span>

@@ -40,12 +40,23 @@ const GovernmentUser = mongoose.model("government_users", governmentUserSchema);
 
 app.post("/newGovUser/signup", async (req, res) => {
   try {
-    const { governmentState, governmentEmail, governmentPassword } = req.body;
+    const { 
+        governmentState,
+        governmentEmail, 
+        governmentPassword 
+      } = req.body;
 
-    if (!governmentState || !governmentEmail || !governmentPassword) {
+    if (
+      !governmentState || 
+      !governmentEmail || 
+      !governmentPassword
+      ) {
       return res.status(400).json({ message: 'Government Missing required fields' });
     }
-    const governmentUser = new GovernmentUser({ governmentState, governmentEmail, governmentPassword });
+    const governmentUser = new GovernmentUser({ 
+      governmentState, 
+      governmentEmail, 
+      governmentPassword });
     await governmentUser.save();
     res.status(201).json({ message: 'Government user created successfully' });
   } catch (error) {
@@ -77,11 +88,29 @@ const InstitutionUser = mongoose.model("institution_users",institutionUserSchema
 
 app.post("/newInstitutionUser/signup", async(req,res) => {
   try{
-    const {institutionCode,institutionName,institutionState,institutionEmail,institutionPassword} = req.body
-    if(!institutionCode || !institutionName || !institutionState || !institutionEmail || !institutionPassword){
+    const {
+      institutionCode,
+      institutionName,
+      institutionState,
+      institutionEmail,
+      institutionPassword
+    } = req.body
+    if(
+      !institutionCode || 
+      !institutionName || 
+      !institutionState || 
+      !institutionEmail || 
+      !institutionPassword
+      ){
       return res.status(400).json({ message: 'Institution Missing required fields' });
     }
-    const government = new InstitutionUser({institutionCode,institutionName,institutionState,institutionEmail,institutionPassword})
+    const government = new InstitutionUser({
+      institutionCode,
+      institutionName,
+      institutionState,
+      institutionEmail,
+      institutionPassword
+    })
     await government.save()
     res.status(201).json({ message: 'Institution user created successfully' });
   }catch (error) {
@@ -115,11 +144,30 @@ const StudentUser = mongoose.model("student_users",studentUserSchema)
 
 app.post("/newStudentUser/signup", async(req,res) => {
   try{
-    const {studentEmisNumber,studentName,studentInstituteCode,studentState,studentMobileNumber,studentEmail} = req.body
-    if(!studentEmisNumber || !studentName || !studentInstituteCode || !studentState || !studentMobileNumber || !studentEmail){
+    const {
+      studentEmisNumber,
+      studentName,
+      studentInstituteCode,
+      studentState,
+      studentMobileNumber,
+      studentEmail
+    } = req.body
+    if(
+      !studentEmisNumber || 
+      !studentName || 
+      !studentInstituteCode || 
+      !studentState || 
+      !studentMobileNumber || 
+      !studentEmail
+      ){
       return res.status(400).json({ message: 'Student Missing required fields' });
     }
-    const student = new StudentUser({studentEmisNumber,studentName,studentInstituteCode,studentState,studentMobileNumber,studentEmail})
+    const student = new StudentUser({studentEmisNumber,
+      studentName,
+      studentInstituteCode,
+      studentState,
+      studentMobileNumber,
+      studentEmail})
     await student.save()
     res.status(201).json({ message: 'Student user created successfully' });
   }catch (error) {
@@ -138,18 +186,37 @@ const addDropoutSchema = new mongoose.Schema({
   dropoutStudentReason: String,
 });
 
-const dropoutStudent = mongoose.model("add_dropouts", addDropoutSchema);
+const DropoutStudent = mongoose.model("add_dropouts", addDropoutSchema);
 
 app.post("/addDropout", async (req, res) => {
 
   try{
     const {
-      dropoutStudentEMIS,dropoutStudentName,dropoutStudentMobile,dropoutStudentEmail,dropoutStudentInstCode,dropoutStudentDate,dropoutStudentReason,} = req.body
+      dropoutStudentEMIS,
+      dropoutStudentName,
+      dropoutStudentMobile,
+      dropoutStudentEmail,
+      dropoutStudentInstCode,
+      dropoutStudentDate,
+      dropoutStudentReason,
+    } = req.body
 
-    if(!dropoutStudentEMIS || !dropoutStudentName || !dropoutStudentMobile || !dropoutStudentInstCode || !dropoutStudentDate || !dropoutStudentReason){
+    if(!dropoutStudentEMIS || 
+      !dropoutStudentName || 
+      !dropoutStudentMobile || 
+      !dropoutStudentInstCode || 
+      !dropoutStudentDate || 
+      !dropoutStudentReason){
       return res.status(400).json({ message: 'Dropout Student Missing required fields' });
     }
-    const dropoutStudent = new dropoutStudent({dropoutStudentEMIS,dropoutStudentName,dropoutStudentMobile,dropoutStudentEmail,dropoutStudentInstCode,dropoutStudentDate,dropoutStudentReason,})
+    const dropoutStudent = new DropoutStudent({dropoutStudentEMIS,
+      dropoutStudentName,
+      dropoutStudentMobile,
+      dropoutStudentEmail,
+      dropoutStudentInstCode,
+      dropoutStudentDate,
+      dropoutStudentReason,})
+
     await dropoutStudent.save()
     res.status(201).json({ message: 'Dropout Student user created successfully' });
   }catch (error) {
@@ -159,7 +226,7 @@ app.post("/addDropout", async (req, res) => {
 
 app.get("/getDropoutStudents", async (req, res) => {
   try {
-    const students = await dropoutStudent.find({});
+    const students = await DropoutStudent.find({});
     res.json(students);
   } catch (error) {
     console.error(error);
@@ -172,7 +239,7 @@ app.get("/getDropoutStudents", async (req, res) => {
 app.delete("/removeDropout/:id", async (req, res) => {
   const studentId = req.params.id;
   try {
-    const deletedStudent = await dropoutStudent.findByIdAndDelete(studentId);
+    const deletedStudent = await DropoutStudent.findByIdAndDelete(studentId);
     if (!deletedStudent) {
       return res.status(404).json({ message: "Student not found" });
     }
@@ -182,3 +249,87 @@ app.delete("/removeDropout/:id", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+// StudentSurvey
+const studentSurveySchema = new mongoose.Schema({
+  dropoutStudentDate: String,
+  religion: String,
+  age: String,
+  gender: String,
+  socioeconomicStatus: String,
+  schoolType: String,
+  previousPerformance: String,
+  dropoutReason: String,
+  futurePlans: String,
+  employmentGoals: String,
+  furtherEducationPlans: String,
+});
+
+const StudentSurvey = mongoose.model("student_survey", studentSurveySchema);
+
+app.post("/studentSurveySubmit", async (req, res) => {
+  try {
+    const {
+      dropoutStudentDate,
+      religion,
+      age,
+      gender,
+      socioeconomicStatus,
+      schoolType,
+      previousPerformance,
+      dropoutReason,
+      futurePlans,
+      employmentGoals,
+      furtherEducationPlans,
+    } = req.body;
+
+    if (
+      !dropoutStudentDate ||
+      !religion ||
+      !age ||
+      !gender ||
+      !socioeconomicStatus ||
+      !schoolType ||
+      !previousPerformance ||
+      !dropoutReason ||
+      !futurePlans ||
+      !employmentGoals ||
+      !furtherEducationPlans
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Survey missing required fields" });
+    }
+
+    const studentSurvey = new StudentSurvey({
+      dropoutStudentDate,
+      religion,
+      age,
+      gender,
+      socioeconomicStatus,
+      schoolType,
+      previousPerformance,
+      dropoutReason,
+      futurePlans,
+      employmentGoals,
+      furtherEducationPlans,
+    });
+
+    await studentSurvey.save();
+    res.status(201).json({ message: "Survey submitted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/studentSurveySubmit", async (req, res) => {
+  try {
+    const studentSurvey = await StudentSurvey.find({});
+    res.json(studentSurvey);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+

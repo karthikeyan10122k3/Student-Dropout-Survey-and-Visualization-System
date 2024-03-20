@@ -1,0 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.radio-buttons{
+  display: flex;
+  gap: 15px;
+}
+
+label{
+  font-weight: bold;
+}

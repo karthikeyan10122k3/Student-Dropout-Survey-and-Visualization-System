@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import  YearChart  from './YearChart'
+import  DisplayChart  from './YearChart'
 import DashBoardContent from './DashBoardContent'
 
 
@@ -12,7 +12,7 @@ const Dashboard = () => {
     componentToRender = <DashBoardContent setActiveComponent={setActiveComponent} />;
   }
   else if (activeComponent === 'yearChart') {
-    componentToRender = <YearChart setActiveComponent={setActiveComponent}  />;
+    componentToRender = <DisplayChart setActiveComponent={setActiveComponent}  />;
   } 
 
   return <div>{componentToRender}</div>;

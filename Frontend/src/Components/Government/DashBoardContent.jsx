@@ -1,6 +1,4 @@
-
 import "../../Assets/Styles/Government/dashBoardContent.css"
-
 
 const DashBoardContent = ({ setActiveComponent }) => {
   return (
@@ -28,4 +26,4 @@ const DashBoardContent = ({ setActiveComponent }) => {
   );
 };
 
-export default DashBoardContent
+export default DashBoardContent;
