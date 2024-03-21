@@ -48,7 +48,7 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
         <div className="col-md-8 offset-md-2">
           <div className="card border-primary">
             <div className="card-body">
-              <h5 className="card-title text-blue font-weight-bolder text-primary">
+              <h5 className="card-title text-blue font-weight-bolder text-primary  text">
                 Institution Login
               </h5>
               <form onSubmit={handleSubmit}>
@@ -173,7 +173,6 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
     if (!loginData.governmentPassword.trim()) {
       newErrors.governmentPassword = "Password is required";
     }
-    
 
     setErrors(newErrors);
 
@@ -183,7 +182,7 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      handleAuthenticationGovernment(loginData)
+      handleAuthenticationGovernment(loginData);
     }
   };
 
@@ -193,7 +192,7 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
         <div className="col-md-8 offset-md-2">
           <div className="card border-primary">
             <div className="card-body">
-              <h5 className="card-title text-blue font-weight-bolder text-primary">
+              <h5 className="card-title text-blue font-weight-bolder text-primary text">
                 Government Login
               </h5>
               <form onSubmit={handleSubmit}>
@@ -233,12 +232,17 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
                     onChange={handleCheckboxChange}
                     className="form-check-input"
                   />
-                  <label htmlFor="logCheck" className="log-text form-check-label mb-2">
+                  <label
+                    htmlFor="logCheck"
+                    className="log-text form-check-label mb-2"
+                  >
                     Remember me
                   </label>
                 </div>
                 <div className="form-group mb-2">
-                  <button type="submit" className="btn btn-primary">Login</button>
+                  <button type="submit" className="btn btn-primary">
+                    Login
+                  </button>
                 </div>
               </form>
               <div className="log-login-signup mb-2">
@@ -263,19 +267,25 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
 
 const handleAuthenticationGovernment = async (loginData) => {
   try {
-    const response = await axios.get('http://localhost:8000/getGovernmentUser/login');
+    const response = await axios.get(
+      "http://localhost:8000/getGovernmentUser/login"
+    );
     const governments = response.data;
-    
-    const loggedInUser = governments.find(user => user.governmentEmail === loginData.governmentEmail && user.governmentPassword === loginData.governmentPassword);
+
+    const loggedInUser = governments.find(
+      (user) =>
+        user.governmentEmail === loginData.governmentEmail &&
+        user.governmentPassword === loginData.governmentPassword
+    );
 
     if (loggedInUser) {
-      console.log('Login successful!');
+      console.log("Login successful!");
 
       window.location.href = "/government";
     } else {
-      alert('Invalid credentials. Please try again.');
+      alert("Invalid credentials. Please try again.");
     }
   } catch (error) {
-    console.error('Error fetching government user data:', error);
+    console.error("Error fetching government user data:", error);
   }
-}
+};

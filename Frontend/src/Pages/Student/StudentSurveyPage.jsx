@@ -99,6 +99,7 @@ const StudentSurvey = () => {
     e.preventDefault();
     if (validateForm()) {
       studentSurveySubmit(formData);
+      window.location.href="/"
     }
   };
 
@@ -233,31 +234,40 @@ const StudentSurvey = () => {
           >
             <option value="">Select</option>
             <option value="lack_of_interest">
-              Lack of interest or motivation in school
+              Lack of interest 
             </option>
             <option value="academic_difficulties">
-              Academic difficulties or struggles with coursework
+              Academic difficulties 
             </option>
-            <option value="family_personal_issues">
-              Family or personal issues
+            <option value="family_issues">
+              Family issues
             </option>
-            <option value="peer_pressure_bullying">
-              Peer pressure or bullying
+            <option value="personal_issues">
+              Personal issues
             </option>
-            <option value="health_related_issues">Health-related issues</option>
-            <option value="substance_abuse_illegal_activities">
-              Substance abuse or involvement in illegal activities
+            <option value="bullying">
+               Bullying
+            </option>
+            <option value="peer_pressure">
+            Peer pressure
+            </option>
+            <option value="health_issues">Health issues</option>
+            <option value="illegal_activities">
+              Illegal activities
             </option>
             <option value="accessibility_issues">Accessibility issues</option>
-            <option value="dissatisfaction_with_school">
-              Dissatisfaction with the school environment or teachers
+            <option value="dissatisfaction_with_teachers">
+              Dissatisfaction teachers
             </option>
-            <option value="pregnancy_parenthood">
-              Pregnancy or parenthood
+            <option value="pregnancy">
+              Pregnancy
             </option>
-            <option value="employment_financial_reasons">
-              Employment or financial reasons
+            <option value="employment_reasons">
+              Employment reasons
             </option>
+            <option value="financial_reasons">
+            Financial Reasons
+            </option> 
             <option value="others">Others</option>
           </select>
         </div>
@@ -312,7 +322,7 @@ const StudentSurvey = () => {
 const studentSurveySubmit = async (formData) => {
   try {
     await axios.post("http://localhost:8000/studentSurveySubmit", formData);
-    console.log("Dropout Student added successfully");
+    alert("Thank You For Your FeedBack");
   } catch (error) {
     console.error("Error adding Dropout Student:", error);
   }

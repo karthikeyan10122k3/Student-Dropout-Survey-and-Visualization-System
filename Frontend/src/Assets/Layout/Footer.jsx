@@ -1,10 +1,10 @@
-import footerStyle from "./footer.module.css";
+import "./footer.css";
 
 const Footer = () => {
   const d = new Date();
 let year = d.getFullYear();
   return (
-    <footer className={footerStyle.homePageFooter}>
+    <footer className="footer">
       <p>&copy; {year} Dropout Analysis</p>
     </footer>
   );

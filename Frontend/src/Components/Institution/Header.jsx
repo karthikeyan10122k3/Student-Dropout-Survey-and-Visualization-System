@@ -12,7 +12,7 @@ const Header = () => {
           height="32"
           className="me-2"
         /> */}
-        <h1 className="me-lg-auto">Institution Name</h1>
+        <h1 className="me-lg-auto">Velammal Engineering College</h1>
         <ul className="nav col-12 col-lg-auto mb-2 justify-content-end mb-md-0">
           <li className="dropdown text-end">
             <a

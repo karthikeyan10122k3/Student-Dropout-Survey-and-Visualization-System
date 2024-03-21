@@ -16,9 +16,15 @@ const DashBoardContent = ({ setActiveComponent }) => {
             <button type="button" className="btn btn-primary btn-lg px-4" onClick={() => setActiveComponent('yearChart')}>
               Yearly Chart
             </button>
-            {/* <button type="button" className="btn btn-primary btn-lg px-4 gap-3" onClick={() => setActiveComponent('rateChart')}>
-              Rate Chart
-            </button> */}
+            <button type="button" className="btn btn-primary btn-lg px-4 gap-3" onClick={() => setActiveComponent('ageChart')}>
+              Age Chart
+            </button>
+            <button type="button" className="btn btn-primary btn-lg px-4 gap-3" onClick={() => setActiveComponent('reasonChart')}>
+              Reason Chart
+            </button>
+            <button type="button" className="btn btn-primary btn-lg px-4 gap-3" onClick={() => setActiveComponent('genderChart')}>
+              Gender Chart
+            </button>
           </div>
         </div>
       </div>

@@ -1,6 +1,21 @@
 
 
-
+.page-center {
+  background-image: linear-gradient(#12C2E9 ,#F64F59);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 .smaller-container{
-  width: 65%;
+  width: 60%;
+}
+
+.text{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.transparent-bg {
+  background-color: rgb(255, 255, 255);
 }

@@ -102,13 +102,13 @@ const InstitutionSignUp = () => {
   return (
     <>
       {!showLogin && (
-        <div className="container smaller-container mt-2">
+        <div className="container smaller-container mt-2 mb-5">
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <div className="card border-primary">
                 <div className="card-body">
-                  <h5 className="card-title text-blue font-weight-bolder text-primary">
-                    Institution Management Sign Up
+                  <h5 className="card-title text-blue font-weight-bolder text-primary text">
+                    Institution Sign Up
                   </h5>
                   <form onSubmit={handleSubmit}>
                     <div className="form-group">

@@ -1,4 +1,3 @@
-
 import "../../Assets/Styles/Institution/dashBoardContent.css";
 
 const DashBoardContent = ({ setActiveComponent }) => {
@@ -12,7 +11,9 @@ const DashBoardContent = ({ setActiveComponent }) => {
           width="72"
           height="57"
         />
-        <h1 className="display-5 fw-bold text-body-emphasis">Institution Name</h1>
+        <h1 className="display-5 fw-bold text-body-emphasis">
+          Velammal Engineering College
+        </h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">
             Join our community in keeping dreams alive. Together, we'll overcome
@@ -21,9 +22,24 @@ const DashBoardContent = ({ setActiveComponent }) => {
             dropout a thing of the past.
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button onClick={() => setActiveComponent('add')} className="btn btn-primary btn-lg p-2 gap-1">Add Dropout</button>
-            <button onClick={() => setActiveComponent('remove')} className="btn btn-primary btn-lg p-2 gap-1">Remove Dropout</button>
-            <button onClick={() => setActiveComponent('view')} className="btn btn-primary btn-lg p-2 gap-1">View Dropout</button>
+            <button
+              onClick={() => setActiveComponent("add")}
+              className="btn btn-primary btn-lg p-2 gap-1"
+            >
+              Add Dropout
+            </button>
+            <button
+              onClick={() => setActiveComponent("remove")}
+              className="btn btn-primary btn-lg p-2 gap-1"
+            >
+              Remove Dropout
+            </button>
+            <button
+              onClick={() => setActiveComponent("view")}
+              className="btn btn-primary btn-lg p-2 gap-1"
+            >
+              View Dropout
+            </button>
           </div>
         </div>
       </div>
@@ -31,4 +47,4 @@ const DashBoardContent = ({ setActiveComponent }) => {
   );
 };
 
-export default DashBoardContent
+export default DashBoardContent;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GovernmentLoginComponent } from "./Login";
-import "../../Assets/Styles/Registration/institutionSignUp.css"; // Importing the same CSS file used in InstitutionSignUp
+import "../../Assets/Styles/Registration/institutionSignUp.css"; 
 import axios from "axios";
 
 const GovernmentSignUp = () => {
@@ -87,14 +87,12 @@ const GovernmentSignUp = () => {
     <>
       {!showLogin && (
         <div className="container smaller-container mt-2">
-          {" "}
-          {/* Updated class name to match InstitutionSignUp */}
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <div className="card border-primary">
                 <div className="card-body">
-                  <h5 className="card-title text-blue font-weight-bolder text-primary">
-                    Government Authority Signup
+                  <h5 className="card-title text-blue font-weight-bolder text-primary text">
+                    State Government Signup
                   </h5>
                   <form onSubmit={handleSubmit}>
                     <div className="form-group">
