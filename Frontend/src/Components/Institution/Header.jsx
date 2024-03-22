@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../Assets/Styles/Institution/header.css";
 
-const Header = () => {
+const Header = ({institutionName}) => {
   return (
     <div className="container">
       <div className="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-start">
@@ -12,7 +12,7 @@ const Header = () => {
           height="32"
           className="me-2"
         /> */}
-        <h1 className="me-lg-auto">Velammal Engineering College</h1>
+        <h1 className="me-lg-auto">{institutionName}</h1>
         <ul className="nav col-12 col-lg-auto mb-2 justify-content-end mb-md-0">
           <li className="dropdown text-end">
             <a
@@ -34,10 +34,10 @@ const Header = () => {
                 <button className="dropdown-item">Add DropOut</button>
               </li>
               <li>
-                  <button className="dropdown-item">Remove Dropout</button>
+                <button className="dropdown-item">Remove Dropout</button>
               </li>
               <li>
-                  <button className="dropdown-item">View Website</button>
+                <button className="dropdown-item">View Website</button>
               </li>
               <li>
                 <hr className="dropdown-divider" />

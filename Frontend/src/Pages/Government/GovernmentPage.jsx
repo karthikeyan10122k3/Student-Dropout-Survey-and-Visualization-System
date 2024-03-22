@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { Chart as ChartJS } from 'chart.js/auto'
 
 import Header from "../../Components/Government/Header";
 import Dashboard from "../../Components/Government/DashBoard";

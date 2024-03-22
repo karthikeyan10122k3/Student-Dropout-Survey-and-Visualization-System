@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ViewDropout = ({ setActiveComponent }) => {
+const ViewDropout = ({ setActiveComponent, institutionCode }) => {
   const [droppedOut, setDroppedOut] = useState([]);
 
   useEffect(() => {
     const fetchDropoutStudents = async () => {
       try {
         const response = await axios.get("http://localhost:8000/getDropoutStudents");
-        setDroppedOut(response.data);
+        const filteredStudents = response.data.filter(student => student.dropoutStudentInstCode === institutionCode);
+        console.log(filteredStudents);
+        setDroppedOut(filteredStudents);
       } catch (err) {
         console.log(err);
       }
     };
 
     fetchDropoutStudents();
-  }, []);
+  }, [institutionCode]); 
 
   const handleBackButton = () => {
     setActiveComponent("dashBoard");

@@ -1,16 +1,15 @@
 import "../../Assets/Styles/Institution/addDropout.css";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
-
-const AddDropout = ({ setActiveComponent }) => {
+const AddDropout = ({ setActiveComponent,institutionCode }) => {
   const [addDropout, setAddDropout] = useState({
     dropoutStudentEMIS: "",
     dropoutStudentName: "",
     dropoutStudentMobile: "",
     dropoutStudentEmail: "",
     dropoutStudentDate: "",
-    dropoutStudentInstCode: "",
+    dropoutStudentInstCode: institutionCode,
     dropoutStudentReason: "",
   });
   const [errors, setErrors] = useState({});
@@ -51,13 +50,12 @@ const AddDropout = ({ setActiveComponent }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-
-      addDropoutPostRequest(addDropout)
+      addDropoutPostRequest(addDropout);
 
       setAddDropout({
-        dropoutStudentEMIS:"",
+        dropoutStudentEMIS: "",
         dropoutStudentName: "",
-        dropoutStudentMobile:"" ,
+        dropoutStudentMobile: "",
         dropoutStudentEmail: "",
         dropoutStudentInstCode: "",
         dropoutStudentDate: "",
@@ -68,7 +66,7 @@ const AddDropout = ({ setActiveComponent }) => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-5">
       <button onClick={handleBackButton} className="btn btn-primary mb-3 px-4">
         Back
       </button>
@@ -85,7 +83,6 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentName"
             value={addDropout.dropoutStudentName}
             onChange={handleChange}
-            
           />
           {errors.dropoutStudentName && (
             <span className="text-danger">{errors.dropoutStudentName}</span>
@@ -103,7 +100,6 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentMobile"
             value={addDropout.dropoutStudentMobile}
             onChange={handleChange}
-            
           />
           {errors.dropoutStudentMobile && (
             <span className="text-danger">{errors.dropoutStudentMobile}</span>
@@ -133,24 +129,10 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentEMIS"
             value={addDropout.dropoutStudentEMIS}
             onChange={handleChange}
-            
           />
           {errors.dropoutStudentEMIS && (
             <span className="text-danger">{errors.dropoutStudentEMIS}</span>
           )}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="dropoutStudentInstCode" className="form-label">
-            Institution Code:{" "}
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="dropoutStudentInstCode"
-            name="dropoutStudentInstCode"
-            value={addDropout.dropoutStudentInstCode}
-            onChange={handleChange}
-          />
         </div>
         <div className="mb-3">
           <label htmlFor="dropoutStudentDate" className="form-label">
@@ -163,7 +145,6 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentDate"
             value={addDropout.dropoutStudentDate}
             onChange={handleChange}
-            
           />
           {errors.dropoutStudentDate && (
             <span className="text-danger">{errors.dropoutStudentDate}</span>
@@ -180,7 +161,6 @@ const AddDropout = ({ setActiveComponent }) => {
             name="dropoutStudentReason"
             value={addDropout.dropoutStudentReason}
             onChange={handleChange}
-            
           />
           {errors.dropoutStudentReason && (
             <span className="text-danger">{errors.dropoutStudentReason}</span>
@@ -195,24 +175,24 @@ const AddDropout = ({ setActiveComponent }) => {
   );
 };
 
-const addDropoutPostRequest = async(dropoutStudentData) =>{
+const addDropoutPostRequest = async (dropoutStudentData) => {
   try {
-    await axios.post('http://localhost:8000/addDropout', dropoutStudentData );
-    console.log('Dropout Student added successfully');
+    await axios.post("http://localhost:8000/addDropout", dropoutStudentData);
+    console.log("Dropout Student added successfully");
   } catch (error) {
-    console.error('Error adding Dropout Student:', error);
+    console.error("Error adding Dropout Student:", error);
   }
-}
+};
 
 const studentAuthentication = async (studentData) => {
   try {
-    const response = await axios.get('http://localhost:8000/getDropoutStudents');
+    const response = await axios.get(
+      "http://localhost:8000/getDropoutStudents"
+    );
     const students = response.data;
-    
-     
   } catch (error) {
-    console.error('Error fetching student data:', error);
+    console.error("Error fetching student data:", error);
   }
-}
+};
 
 export default AddDropout;

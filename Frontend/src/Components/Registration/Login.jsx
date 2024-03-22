@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../Assets/Styles/Registration/login.css";
 import axios from "axios";
 
 export const InstitutionLoginComponent = ({ handleSignupClick }) => {
+  const navigate = useNavigate(); 
   const [loginData, setLoginData] = useState({
     institutionEmail: "",
     institutionPassword: "",
@@ -35,10 +37,29 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      handleAuthenticationInstitution(loginData);
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/getInstitutionUser/login"
+        );
+        const institutions = response.data;
+
+        const loggedInInstitution = institutions.find(
+          (institution) =>
+            institution.institutionEmail === loginData.institutionEmail &&
+            institution.institutionPassword === loginData.institutionPassword
+        );
+
+        if (loggedInInstitution) {
+          navigate("/institution", { state: { InstEmail: loginData.institutionEmail } }); 
+        } else {
+          alert("Invalid credentials. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error fetching institution data:", error);
+      }
     }
   };
 
@@ -48,7 +69,7 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
         <div className="col-md-8 offset-md-2">
           <div className="card border-primary">
             <div className="card-body">
-              <h5 className="card-title text-blue font-weight-bolder text-primary  text">
+              <h5 className="card-title text-blue font-weight-bolder text-primary text">
                 Institution Login
               </h5>
               <form onSubmit={handleSubmit}>
@@ -95,8 +116,8 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
                     Remember me
                   </label>
                 </div>
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary mb-2">
+                <div className="form-group mb-2">
+                  <button type="submit" className="btn btn-primary">
                     Login
                   </button>
                 </div>
@@ -121,32 +142,8 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
   );
 };
 
-const handleAuthenticationInstitution = async (loginData) => {
-  try {
-    const response = await axios.get(
-      "http://localhost:8000/getInstitutionUser/login"
-    );
-    const institutions = response.data;
-
-    const loggedInInstitution = institutions.find(
-      (institution) =>
-        institution.institutionEmail === loginData.institutionEmail &&
-        institution.institutionPassword === loginData.institutionPassword
-    );
-
-    if (loggedInInstitution) {
-      alert("Login successful!");
-
-      window.location.href = "/institution";
-    } else {
-      alert("Invalid credentials. Please try again.");
-    }
-  } catch (error) {
-    console.error("Error fetching institution data:", error);
-  }
-};
-
 export const GovernmentLoginComponent = ({ handleSignupClick }) => {
+  const navigate = useNavigate(); 
   const [loginData, setLoginData] = useState({
     governmentEmail: "",
     governmentPassword: "",
@@ -179,10 +176,29 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      handleAuthenticationGovernment(loginData);
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/getGovernmentUser/login"
+        );
+        const governments = response.data;
+
+        const loggedInUser = governments.find(
+          (user) =>
+            user.governmentEmail === loginData.governmentEmail &&
+            user.governmentPassword === loginData.governmentPassword
+        );
+
+        if (loggedInUser) {
+          navigate("/government", { state: { govEmail: loginData.governmentEmail } }); 
+        } else {
+          alert("Invalid credentials. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error fetching government user data:", error);
+      }
     }
   };
 
@@ -263,29 +279,4 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
       </div>
     </div>
   );
-};
-
-const handleAuthenticationGovernment = async (loginData) => {
-  try {
-    const response = await axios.get(
-      "http://localhost:8000/getGovernmentUser/login"
-    );
-    const governments = response.data;
-
-    const loggedInUser = governments.find(
-      (user) =>
-        user.governmentEmail === loginData.governmentEmail &&
-        user.governmentPassword === loginData.governmentPassword
-    );
-
-    if (loggedInUser) {
-      console.log("Login successful!");
-
-      window.location.href = "/government";
-    } else {
-      alert("Invalid credentials. Please try again.");
-    }
-  } catch (error) {
-    console.error("Error fetching government user data:", error);
-  }
 };

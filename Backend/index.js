@@ -124,7 +124,7 @@ app.post("/newInstitutionUser/signup", async(req,res) => {
 
 app.get("/getInstitutionUser/login", async (req, res) => {
   try {
-    const users = await InstitutionUser.find({}, { institutionEmail: 1, institutionPassword: 1, _id: 0 });
+    const users = await InstitutionUser.find({});
     res.json(users);
   } catch (error) {
     console.error(error);
@@ -181,6 +181,7 @@ app.post("/newStudentUser/signup", async(req,res) => {
 
 //For Adding Dropout
 const addDropoutSchema = new mongoose.Schema({
+  dropoutStudentInstName: String,                     //caution changes made here
   dropoutStudentName: String,
   dropoutStudentEMIS: String,
   dropoutStudentMobile: String,

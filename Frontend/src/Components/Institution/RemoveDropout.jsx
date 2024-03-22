@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../Assets/Styles/Institution/removeDropout.css";
 
-const RemoveDropout = ({ setActiveComponent }) => {
+const RemoveDropout = ({ setActiveComponent , institutionCode }) => {
   const [droppedOutStudents, setDroppedOutStudents] = useState([]);
 
   useEffect(() => {
