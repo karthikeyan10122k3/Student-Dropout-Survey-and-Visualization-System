@@ -149,7 +149,7 @@ const StudentSurvey = () => {
               <input
                 type="radio"
                 name="gender"
-                value="male"
+                value="Male"
                 onChange={handleChange}
               />{" "}
               Male
@@ -158,7 +158,7 @@ const StudentSurvey = () => {
               <input
                 type="radio"
                 name="gender"
-                value="female"
+                value="Female"
                 onChange={handleChange}
               />{" "}
               Female
@@ -167,7 +167,7 @@ const StudentSurvey = () => {
               <input
                 type="radio"
                 name="gender"
-                value="other"
+                value="Other"
                 onChange={handleChange}
               />{" "}
               Other

@@ -4,13 +4,6 @@ const DashBoardContent = ({ setActiveComponent, institutionName}) => {
   return (
     <div className="container">
       <div className="px-4 py-5 my-5 text-center">
-        {/* <img
-          className="d-block mx-auto mb-4"
-          src="..."
-          alt="Inst logo"
-          width="72"
-          height="57"
-        /> */}
         <h1 className="display-5 fw-bold text-body-emphasis">
        {institutionName}
         </h1>

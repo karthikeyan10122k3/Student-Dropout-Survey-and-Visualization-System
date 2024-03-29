@@ -3,23 +3,19 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import nodemailer from 'nodemailer'
+import bcrypt from 'bcrypt'
 
 dotenv.config();
-
 const app = express();
 app.use(express.urlencoded({extended:true}))
-
-
 app.use(cors({
   origin: 'http://localhost:5173'
 }));
-
 app.use(express.json());
 const PORT = process.env.PORT || 7000;
 const MONGO_URL = process.env.MONGO_URL;
 
-
-
+const saltRounds = 5
 
 mongoose.connect(MONGO_URL)
   .then(() => {
@@ -33,50 +29,72 @@ mongoose.connect(MONGO_URL)
   });
 
 
+
   //For Government
-const governmentUserSchema = new mongoose.Schema({
-  governmentState: String,
-  governmentEmail: String,
-  governmentPassword: String,
-});
-
-const GovernmentUser = mongoose.model("government_users", governmentUserSchema);
-
-app.post("/newGovUser/signup", async (req, res) => {
-  try {
-    const { 
-        governmentState,
-        governmentEmail, 
-        governmentPassword 
-      } = req.body;
-
-    if (
-      !governmentState || 
-      !governmentEmail || 
-      !governmentPassword
-      ) {
-      return res.status(400).json({ message: 'Government Missing required fields' });
+  const governmentUserSchema = new mongoose.Schema({
+    governmentState: String,
+    governmentEmail: String,
+    governmentPassword: String,
+  });
+  
+  const GovernmentUser = mongoose.model("government_users", governmentUserSchema);
+  
+  app.post("/newGovUser/signup", async (req, res) => {
+    try {
+      const { governmentState, governmentEmail, governmentPassword } = req.body;
+  
+      if (!governmentState || !governmentEmail || !governmentPassword) {
+        return res.status(400).json({ message: 'Government Missing required fields' });
+      }
+  
+      bcrypt.hash(governmentPassword, saltRounds, async (err, hashedPassword) => {
+        if (err) {
+          return res.status(500).json({ message: 'Error occurred while hashing password' });
+        }
+  
+        try {
+          const governmentUser = new GovernmentUser({ governmentState, governmentEmail, governmentPassword: hashedPassword });
+          await governmentUser.save();
+          res.status(201).json({ message: 'Government user created successfully' });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Error occurred while saving user' });
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
     }
-    const governmentUser = new GovernmentUser({ 
-      governmentState, 
-      governmentEmail, 
-      governmentPassword });
-    await governmentUser.save();
-    res.status(201).json({ message: 'Government user created successfully' });
-  } catch (error) {
-    console.error(error);
-  }
-});
+  });
+  
 
-app.get("/getGovernmentUser/login", async (req, res) => {
-  try {
-    const users = await GovernmentUser.find({}, { governmentEmail: 1, governmentPassword: 1, _id: 0 });
-    res.json(users);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
+  app.post("/getGovernmentUser/login", async (req, res) => {
+    try {
+      const { governmentEmail, governmentPassword } = req.body;
+  
+      const user = await GovernmentUser.findOne({ governmentEmail });
+  
+      if (!user) {
+        return res.status(401).json({ message: "User not found" });
+      }
+  
+      const userHashedPassword = user.governmentPassword;
+  
+      bcrypt.compare(governmentPassword, userHashedPassword, (err, result) => {
+        if (err) {
+          return res.status(500).json({ message: "Error occurred while comparing password" });
+        }
+        if (result) {
+          res.send({ logInAccepted: true });
+        } else {
+          res.send({ logInAccepted: false });
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 
 
 //For Institution
@@ -108,14 +126,14 @@ app.post("/newInstitutionUser/signup", async(req,res) => {
       ){
       return res.status(400).json({ message: 'Institution Missing required fields' });
     }
-    const government = new InstitutionUser({
+    const institutionUser = new InstitutionUser({
       institutionCode,
       institutionName,
       institutionState,
       institutionEmail,
       institutionPassword
     })
-    await government.save()
+    await institutionUser.save()
     res.status(201).json({ message: 'Institution user created successfully' });
   }catch (error) {
     console.error(error);

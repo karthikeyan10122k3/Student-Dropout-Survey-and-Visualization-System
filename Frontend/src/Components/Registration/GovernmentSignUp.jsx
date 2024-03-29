@@ -47,9 +47,7 @@ const GovernmentSignUp = () => {
     if (!government.governmentPassword.trim()) {
       newErrors.governmentPassword = "Password is required";
     }
-    if (
-      government.governmentPassword !== government.governmentConfirmPassword
-    ) {
+    if (government.governmentPassword !== government.governmentConfirmPassword) {
       newErrors.governmentConfirmPassword = "Passwords do not match";
     }
     if (!termsAccepted) {
@@ -197,7 +195,6 @@ const GovernmentSignUp = () => {
 
 const govPostRequest = async (governmentData) => {
   try {
-    console.log(governmentData);
     await axios.post("http://localhost:8000/newGovUser/signup", governmentData);
     console.log("Government User added successfully");
   } catch (error) {

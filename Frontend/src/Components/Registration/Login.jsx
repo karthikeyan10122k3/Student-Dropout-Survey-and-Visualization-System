@@ -180,19 +180,16 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/getGovernmentUser/login"
+        const response = await axios.post(
+          "http://localhost:8000/getGovernmentUser/login",
+          loginData
         );
-        const governments = response.data;
-
-        const loggedInUser = governments.find(
-          (user) =>
-            user.governmentEmail === loginData.governmentEmail &&
-            user.governmentPassword === loginData.governmentPassword
-        );
-
-        if (loggedInUser) {
-          navigate("/government", { state: { govEmail: loginData.governmentEmail } }); 
+        console.log((response));
+        const logInAccepted = response.data.logInAccepted;
+        console.log((logInAccepted));
+  
+        if (logInAccepted) {
+          navigate("/government", { state: { govEmail: loginData.governmentEmail } });
         } else {
           alert("Invalid credentials. Please try again.");
         }
@@ -201,7 +198,6 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
       }
     }
   };
-
   return (
     <div className="container smaller-container mt-2">
       <div className="row">

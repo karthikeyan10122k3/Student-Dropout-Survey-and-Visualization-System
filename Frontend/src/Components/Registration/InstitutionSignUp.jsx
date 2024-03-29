@@ -246,7 +246,6 @@ const InstitutionSignUp = () => {
 
 const InstitutionPostRequest = async (institutionData) => {
   try {
-    console.log(institutionData);
     await axios.post(
       "http://localhost:8000/newInstitutionUser/signup",
       institutionData

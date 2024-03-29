@@ -27,3 +27,5 @@ const Dashboard = ({institutionName, institutionCode}) => {
 };
 
 export default Dashboard;
+
+

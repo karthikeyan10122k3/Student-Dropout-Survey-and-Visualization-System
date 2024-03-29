@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../Assets/Styles/Institution/removeDropout.css";
 
-const RemoveDropout = ({ setActiveComponent , institutionCode }) => {
+const RemoveDropout = ({ setActiveComponent, institutionCode }) => {
   const [droppedOutStudents, setDroppedOutStudents] = useState([]);
 
   useEffect(() => {
@@ -11,29 +11,30 @@ const RemoveDropout = ({ setActiveComponent , institutionCode }) => {
         const response = await axios.get(
           "http://localhost:8000/getDropoutStudents"
         );
-        setDroppedOutStudents(response.data);
+
+        const filteredStudents = response.data.filter(
+          (student) => student.dropoutStudentInstCode === institutionCode
+        );
+
+        setDroppedOutStudents(filteredStudents);
       } catch (error) {
         console.error("Error fetching dropped out students:", error);
       }
     };
 
     fetchDroppedOutStudents();
-  }, []);
+  }, [institutionCode]); 
 
   const handleBackButton = () => {
     setActiveComponent("dashBoard");
   };
 
-  const handleRemove = async (index) => {
+  const handleRemove = async (studentId) => {
     try {
-      const removedStudentId = droppedOutStudents[index]._id;
-      await axios.delete(
-        `http://localhost:8000/removeDropout/${removedStudentId}`
-      );
+      await axios.delete(`http://localhost:8000/removeDropout/${studentId}`);
 
-      // Update the state after successful deletion
       const updatedStudents = droppedOutStudents.filter(
-        (student, i) => i !== index
+        (student) => student._id !== studentId
       );
       setDroppedOutStudents(updatedStudents);
     } catch (error) {
@@ -70,7 +71,7 @@ const RemoveDropout = ({ setActiveComponent , institutionCode }) => {
               <td>
                 <button
                   className="btn btn-danger"
-                  onClick={() => handleRemove(index)}
+                  onClick={() => handleRemove(student._id)}
                 >
                   Remove
                 </button>
