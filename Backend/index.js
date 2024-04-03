@@ -152,7 +152,6 @@ app.get("/getInstitutionUser/login", async (req, res) => {
 
 
 //for Student Signup
-
 const studentUserSchema = new mongoose.Schema({
   studentEmisNumber: String,
   studentName: String,
