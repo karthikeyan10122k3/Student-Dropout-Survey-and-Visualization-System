@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Chart from "chart.js/auto";
-import axios from "axios";
+06
 
 const AgeChart = ({ setActiveComponent }) => {
   const [ageData, setAgeData] = useState(null);
