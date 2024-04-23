@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
-import {} from "module";
 
-const ReasonChart = ({ setActiveComponent }) => {
+const ReasonChart = ({ setActiveComponent, governmentState }) => {
   const [reasonData, setReasonData] = useState(null);
-
+console.log(governmentState)
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [governmentState]); 
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/studentSurveySubmit"
+        "http://localhost:8000/student/surveySubmit"
       );
       const surveyData = response.data;
-      console.log(surveyData);
 
-      // Check if surveyData is an array
       if (Array.isArray(surveyData)) {
-        // Initialize an object to store reasons and their counts
+        const filteredSurveyData = surveyData.filter(
+          (survey) =>
+            survey.studentInstituteState ===
+            governmentState
+        );
+
         const reasonsCount = {};
 
-        // Iterate through the survey data and count each reason
-        surveyData.forEach((survey) => {
+        filteredSurveyData.forEach((survey) => {
           const reason = survey.dropoutReason;
           if (reason && reason !== "") {
             if (reasonsCount.hasOwnProperty(reason)) {
@@ -35,7 +36,6 @@ const ReasonChart = ({ setActiveComponent }) => {
           }
         });
 
-        // Set the state with the reasons count data
         setReasonData(reasonsCount);
       } else {
         console.error("Invalid survey data format:", surveyData);

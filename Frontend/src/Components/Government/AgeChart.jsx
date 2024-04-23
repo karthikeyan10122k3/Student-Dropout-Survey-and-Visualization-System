@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Chart from "chart.js/auto";
+import axios from "axios";
 
-const AgeChart = ({ setActiveComponent }) => {
+const AgeChart = ({ setActiveComponent, governmentState }) => {
   const [ageData, setAgeData] = useState(null);
 
   useEffect(() => {
     const fetchAgeData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/studentSurveySubmit"
+          "http://localhost:8000/student/surveySubmit"
         );
         const students = response.data;
-        console.log("Fetched student data:", students);
 
         if (!Array.isArray(students)) {
           throw new Error("Data is not in the expected format");
         }
 
-        const ageCounts = students.reduce((counts, student) => {
+        const filteredStudents = students.filter(
+          (student) => student.studentInstituteState === governmentState
+        );
+
+        const ageCounts = filteredStudents.reduce((counts, student) => {
           const age = student.age;
           counts[age] = (counts[age] || 0) + 1;
           return counts;
@@ -32,7 +36,7 @@ const AgeChart = ({ setActiveComponent }) => {
       }
     };
     fetchAgeData();
-  }, []);
+  }, [governmentState]);
 
   useEffect(() => {
     let chartInstance = null;
@@ -91,9 +95,9 @@ const AgeChart = ({ setActiveComponent }) => {
   return (
     <div className="container mt-3 mb-5">
       <button onClick={handleBackButton} className="btn btn-primary mb-3 px-4">
-          Back
-        </button>
-      <div className="text-center">
+        Back
+      </button>
+      <div className="text-center mb-5">
         <h1>Age-wise Dropout Distribution</h1>
         <canvas id="ageChart" width="400" height="200"></canvas>
       </div>

@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../Assets/Styles/Registration/studentSignUp.css";
 
 const StudentSignUp = () => {
+  const navigate = useNavigate();
   const [student, setStudent] = useState({
     studentName: "",
     studentEmail: "",
@@ -60,7 +62,7 @@ const StudentSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      studentAuthentication(student, setStudent, setTermsAccepted);
+      studentAuthentication(student, setStudent, setTermsAccepted, navigate);
     }
   };
 
@@ -192,11 +194,12 @@ const StudentSignUp = () => {
 const studentAuthentication = async (
   studentData,
   setStudent,
-  setTermsAccepted
+  setTermsAccepted,
+  navigate
 ) => {
   try {
     const response = await axios.get(
-      "http://localhost:8000/getDropoutStudents"
+      "http://localhost:8000/institution/getDropoutStudents"
     );
     const students = response.data;
 
@@ -208,7 +211,17 @@ const studentAuthentication = async (
     );
 
     if (studentExists) {
-      window.location.href = "/studentSurvey";
+      try {
+        await axios.post(
+          "http://localhost:8000/student/signup",
+          studentData
+        );
+        navigate("/studentSurvey", {
+          state: { studentInstituteState: studentData.studentState },
+        });
+      } catch (error) {
+        alert(error.response.data.message)
+      }
     } else {
       alert("The student is not registered as a dropout.");
 

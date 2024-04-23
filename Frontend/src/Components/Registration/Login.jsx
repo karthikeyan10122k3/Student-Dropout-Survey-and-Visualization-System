@@ -4,7 +4,7 @@ import "../../Assets/Styles/Registration/login.css";
 import axios from "axios";
 
 export const InstitutionLoginComponent = ({ handleSignupClick }) => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     institutionEmail: "",
     institutionPassword: "",
@@ -40,23 +40,23 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      console.log(loginData)
+      
       try {
-        const response = await axios.get(
-          "http://localhost:8000/getInstitutionUser/login"
+        const response = await axios.post(
+          "http://localhost:8000/institution/login",
+          loginData
         );
-        const institutions = response.data;
+        const logInAccepted = response.data.logInAccepted;
 
-        const loggedInInstitution = institutions.find(
-          (institution) =>
-            institution.institutionEmail === loginData.institutionEmail &&
-            institution.institutionPassword === loginData.institutionPassword
-        );
-
-        if (loggedInInstitution) {
-          navigate("/institution", { state: { InstEmail: loginData.institutionEmail } }); 
+        if (logInAccepted) {
+          navigate("/institution", {
+            state: { InstEmail: loginData.institutionEmail },
+          });
         } else {
           alert("Invalid credentials. Please try again.");
         }
+        
       } catch (error) {
         console.error("Error fetching institution data:", error);
       }
@@ -143,7 +143,7 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
 };
 
 export const GovernmentLoginComponent = ({ handleSignupClick }) => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     governmentEmail: "",
     governmentPassword: "",
@@ -181,15 +181,16 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
     if (validateForm()) {
       try {
         const response = await axios.post(
-          "http://localhost:8000/getGovernmentUser/login",
+          "http://localhost:8000/government/login",
           loginData
         );
-        console.log((response));
         const logInAccepted = response.data.logInAccepted;
-        console.log((logInAccepted));
-  
+        console.log(logInAccepted);
+
         if (logInAccepted) {
-          navigate("/government", { state: { govEmail: loginData.governmentEmail } });
+          navigate("/government", {
+            state: { govEmail: loginData.governmentEmail },
+          });
         } else {
           alert("Invalid credentials. Please try again.");
         }

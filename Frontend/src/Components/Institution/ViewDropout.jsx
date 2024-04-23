@@ -7,7 +7,7 @@ const ViewDropout = ({ setActiveComponent, institutionCode }) => {
   useEffect(() => {
     const fetchDropoutStudents = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/getDropoutStudents");
+        const response = await axios.get("http://localhost:8000/institution/getDropoutStudents");
         const filteredStudents = response.data.filter(student => student.dropoutStudentInstCode === institutionCode);
         console.log(filteredStudents);
         setDroppedOut(filteredStudents);

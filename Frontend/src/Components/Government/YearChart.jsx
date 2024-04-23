@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
 
-const YearChart = ({ setActiveComponent }) => {
+const YearChart = ({ setActiveComponent, governmentState }) => {
   const [dropoutData, setDropoutData] = useState([]);
   const [chartInstance, setChartInstance] = useState(null);
 
@@ -10,11 +10,15 @@ const YearChart = ({ setActiveComponent }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/getDropoutStudents"
+          "http://localhost:8000/student/surveySubmit"
         );
         const students = response.data;
 
-        const dropoutCounts = students.reduce((acc, student) => {
+        const filteredStudents = students.filter(
+          (student) => student.studentInstituteState === governmentState
+        );
+
+        const dropoutCounts = filteredStudents.reduce((acc, student) => {
           const year = new Date(student.dropoutStudentDate).getFullYear();
           acc[year] = (acc[year] || 0) + 1;
           return acc;
@@ -30,7 +34,7 @@ const YearChart = ({ setActiveComponent }) => {
     };
 
     fetchData();
-  }, []);
+  }, [governmentState]);
 
   useEffect(() => {
     if (dropoutData.years && dropoutData.counts) {
@@ -112,8 +116,8 @@ const YearChart = ({ setActiveComponent }) => {
   return (
     <div className="container mt-3 mb-5">
       <button onClick={handleBackButton} className="btn btn-primary mb-3 px-4">
-          Back
-        </button>
+        Back
+      </button>
       <div className="text-center">
         <h1>Year Wise Dropout Distribution</h1>
         <canvas id="YearChart" width="400" height="200"></canvas>

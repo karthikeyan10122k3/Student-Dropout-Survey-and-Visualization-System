@@ -10,16 +10,16 @@ const Header = () => {
           </div>
           <nav>
             <li>
-              <a href="#">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href="#">About</a>
+              <a href="/aboutUs">About</a>
             </li>
             <li>
-              <a href="#">Services</a>
+              <a href="/contactUs">Contact Us</a>
             </li>
             <li>
-              <a href="">Contact Us</a>
+              <a href="/register">Login</a>
             </li>
           </nav>
           <div className={headerStyle.btn}>

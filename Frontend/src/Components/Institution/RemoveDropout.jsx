@@ -9,7 +9,7 @@ const RemoveDropout = ({ setActiveComponent, institutionCode }) => {
     const fetchDroppedOutStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/getDropoutStudents"
+          "http://localhost:8000/institution/getDropoutStudents"
         );
 
         const filteredStudents = response.data.filter(
@@ -31,7 +31,7 @@ const RemoveDropout = ({ setActiveComponent, institutionCode }) => {
 
   const handleRemove = async (studentId) => {
     try {
-      await axios.delete(`http://localhost:8000/removeDropout/${studentId}`);
+      await axios.delete(`http://localhost:8000/institution/removeDropout/${studentId}`);
 
       const updatedStudents = droppedOutStudents.filter(
         (student) => student._id !== studentId

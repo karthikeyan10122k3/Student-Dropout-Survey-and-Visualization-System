@@ -3,7 +3,7 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import '../../Assets/Styles/Government/genderChart.css'
 
-const GenderChart = ({ setActiveComponent }) => {
+const GenderChart = ({ setActiveComponent, governmentState }) => {
   const [surveyData, setSurveyData] = useState([]);
   const chartRef = useRef(null);
 
@@ -11,7 +11,7 @@ const GenderChart = ({ setActiveComponent }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/studentSurveySubmit"
+          "http://localhost:8000/student/surveySubmit"
         );
         setSurveyData(response.data);
       } catch (error) {
@@ -20,12 +20,16 @@ const GenderChart = ({ setActiveComponent }) => {
     };
 
     fetchData();
-  }, []);
+  }, [governmentState]); 
 
   useEffect(() => {
     if (surveyData.length > 0) {
+      const filteredSurveyData = surveyData.filter(
+        (survey) => survey.studentInstituteState=== governmentState
+      );
+
       const genders = {};
-      surveyData.forEach((entry) => {
+      filteredSurveyData.forEach((entry) => {
         const gender = entry.gender;
         if (genders[gender]) {
           genders[gender]++;
@@ -55,10 +59,12 @@ const GenderChart = ({ setActiveComponent }) => {
               backgroundColor: [
                 "rgba(54, 162, 235, 0.5)",
                 "rgba(255, 99, 132, 0.5)",
+                "rgba(49, 49, 200, 0.5)",
               ],
               borderColor: [
                 "rgba(255, 99, 132, 1)",
                 "rgba(54, 162, 235, 1)",
+                "rgba(100, 162, 150, 1)",
               ],
               borderWidth: 1,
             },
@@ -73,21 +79,20 @@ const GenderChart = ({ setActiveComponent }) => {
         },
       });
     }
-  }, [surveyData]);
+  }, [surveyData, governmentState]);
+
   const handleBackButton = () => {
     setActiveComponent("dashBoard");
   };
 
   return (
-<div className="container mb-1" style={{ maxWidth: "400px" }}>
-      <button onClick={handleBackButton} className="btn btn-primary my-1 px-2">
-        Back
-      </button>
-      <h2 className="text-center mb-1">Number of Dropouts by Gender</h2>
-      <canvas id="dropoutByGenderChart" className="small-chart" style={{ width: "100%", height: "auto" }}></canvas>
-    </div>
-
-
+    <>
+      <button onClick={handleBackButton} className="btn btn-primary mt-3 mb-3 px-4 ms-5">Back</button>
+      <div className="container mb-1" style={{ maxWidth: "400px" }}>
+        <h2 className="text-center mb-1">Number of Dropouts by Gender</h2>
+        <canvas id="dropoutByGenderChart" className="small-chart" style={{ width: "100%", height: "auto" }}></canvas>
+      </div>
+    </>
   );
 };
 

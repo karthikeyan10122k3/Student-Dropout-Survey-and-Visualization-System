@@ -5,7 +5,7 @@ import Footer from "../../Assets/Layout/Footer";
 function HomePage() {
   return (
     <div className="App">
-      <Header />
+      
       <MainContent />
       <Footer />
     </div>

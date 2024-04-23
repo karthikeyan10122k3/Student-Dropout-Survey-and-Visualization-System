@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../Assets/Styles/Student/studentSurveyPage.css";
+import { useLocation } from "react-router-dom";
 
 const StudentSurvey = () => {
+  const location = useLocation();
+  const [studentState, setStudentState] = useState("");
+  useEffect(() => {
+    const state = location.state && location.state.studentInstituteState;
+    setStudentState(state);
+  }, [location.state]);
+
   const [formData, setFormData] = useState({
     dropoutStudentDate: "",
     religion: "",
@@ -16,10 +24,18 @@ const StudentSurvey = () => {
     futurePlans: "",
     employmentGoals: "",
     furtherEducationPlans: "",
+    studentInstituteState: studentState,
   });
 
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      studentInstituteState: studentState,
+    }));
+  }, [studentState]);
+
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +68,6 @@ const StudentSurvey = () => {
       errors.gender = "Gender is required";
       isValid = false;
     }
-
 
     if (!formData.socioeconomicStatus.trim()) {
       errors.socioeconomicStatus = "Socioeconomic Status is required";
@@ -95,11 +110,16 @@ const StudentSurvey = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      studentSurveySubmit(formData);
-      window.location.href="/"
+    try {
+      await axios.post("http://localhost:8000/student/surveySubmit", formData);
+      alert("Survey Submitted Successfully!");
+    } catch (error) {
+      console.error("Error adding Dropout Student Survey:", error);
+    }
+      window.location.href = "/";
     }
   };
 
@@ -115,9 +135,13 @@ const StudentSurvey = () => {
             name="dropoutStudentDate"
             value={formData.dropoutStudentDate}
             onChange={handleChange}
-            className={`form-control ${errors.dropoutStudentDate && "is-invalid"}`}
+            className={`form-control ${
+              errors.dropoutStudentDate && "is-invalid"
+            }`}
           />
-          {errors.dropoutStudentDate && <div className="invalid-feedback">{errors.dropoutStudentDate}</div>}
+          {errors.dropoutStudentDate && (
+            <div className="invalid-feedback">{errors.dropoutStudentDate}</div>
+          )}
         </div>
 
         <div className="form-group mb-4">
@@ -233,41 +257,21 @@ const StudentSurvey = () => {
             className="form-control"
           >
             <option value="">Select</option>
-            <option value="lack_of_interest">
-              Lack of interest 
-            </option>
-            <option value="academic_difficulties">
-              Academic difficulties 
-            </option>
-            <option value="family_issues">
-              Family issues
-            </option>
-            <option value="personal_issues">
-              Personal issues
-            </option>
-            <option value="bullying">
-               Bullying
-            </option>
-            <option value="peer_pressure">
-            Peer pressure
-            </option>
+            <option value="lack_of_interest">Lack of interest</option>
+            <option value="academic_difficulties">Academic difficulties</option>
+            <option value="family_issues">Family issues</option>
+            <option value="personal_issues">Personal issues</option>
+            <option value="bullying">Bullying</option>
+            <option value="peer_pressure">Peer pressure</option>
             <option value="health_issues">Health issues</option>
-            <option value="illegal_activities">
-              Illegal activities
-            </option>
+            <option value="illegal_activities">Illegal activities</option>
             <option value="accessibility_issues">Accessibility issues</option>
             <option value="dissatisfaction_with_teachers">
               Dissatisfaction teachers
             </option>
-            <option value="pregnancy">
-              Pregnancy
-            </option>
-            <option value="employment_reasons">
-              Employment reasons
-            </option>
-            <option value="financial_reasons">
-            Financial Reasons
-            </option> 
+            <option value="pregnancy">Pregnancy</option>
+            <option value="employment_reasons">Employment reasons</option>
+            <option value="financial_reasons">Financial Reasons</option>
             <option value="others">Others</option>
           </select>
         </div>
@@ -319,13 +323,6 @@ const StudentSurvey = () => {
   );
 };
 
-const studentSurveySubmit = async (formData) => {
-  try {
-    await axios.post("http://localhost:8000/studentSurveySubmit", formData);
-    alert("Thank You For Your FeedBack");
-  } catch (error) {
-    console.error("Error adding Dropout Student:", error);
-  }
-};
+
 
 export default StudentSurvey;

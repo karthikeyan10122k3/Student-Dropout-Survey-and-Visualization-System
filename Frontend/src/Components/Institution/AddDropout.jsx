@@ -177,22 +177,12 @@ const AddDropout = ({ setActiveComponent,institutionCode }) => {
 
 const addDropoutPostRequest = async (dropoutStudentData) => {
   try {
-    await axios.post("http://localhost:8000/addDropout", dropoutStudentData);
+    await axios.post("http://localhost:8000/institution/addDropout", dropoutStudentData);
     console.log("Dropout Student added successfully");
   } catch (error) {
     console.error("Error adding Dropout Student:", error);
   }
 };
 
-const studentAuthentication = async (studentData) => {
-  try {
-    const response = await axios.get(
-      "http://localhost:8000/getDropoutStudents"
-    );
-    const students = response.data;
-  } catch (error) {
-    console.error("Error fetching student data:", error);
-  }
-};
 
 export default AddDropout;
