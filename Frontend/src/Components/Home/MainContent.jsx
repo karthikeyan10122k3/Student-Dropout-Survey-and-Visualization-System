@@ -18,7 +18,7 @@ const MainContent = () => {
         </p>
         
         <div className={homePageContentStyle.homePagebuttonSection}>
-          <Link to="/register"><button>Register</button></Link>
+          <Link to="/register"><button>Get Started</button></Link>
         </div>
       </div>
     </section>
