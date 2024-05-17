@@ -40,8 +40,8 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log(loginData)
-      
+      console.log(loginData);
+
       try {
         const response = await axios.post(
           "http://localhost:8000/institution/login",
@@ -56,7 +56,6 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
         } else {
           alert("Invalid credentials. Please try again.");
         }
-        
       } catch (error) {
         console.error("Error fetching institution data:", error);
       }
@@ -64,7 +63,7 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
   };
 
   return (
-    <div className="container smaller-container mt-2">
+    <div className="container smaller-container mt-2 text-center ">
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <div className="card border-primary">
@@ -127,7 +126,7 @@ export const InstitutionLoginComponent = ({ handleSignupClick }) => {
                   Not a member?
                   <a
                     href="#"
-                    className="log-text log-signup-link"
+                    className="log-text log-signup-link ms-2"
                     onClick={handleSignupClick}
                   >
                     Signup Now
@@ -200,7 +199,7 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
     }
   };
   return (
-    <div className="container smaller-container mt-2">
+    <div className="container smaller-container mt-2 text-center  ">
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <div className="card border-primary">
@@ -263,7 +262,7 @@ export const GovernmentLoginComponent = ({ handleSignupClick }) => {
                   Not a member?
                   <a
                     href="#"
-                    className="log-text log-signup-link"
+                    className="log-text log-signup-link ms-2"
                     onClick={handleSignupClick}
                   >
                     Signup Now

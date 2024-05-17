@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import "../../Assets/Styles/Registration/registerPage.css";
+import registerPageStyle from "../../Assets/Styles/Registration/registerPage.module.css";
 
 
 import RegisterContent from "../../Components/Registration/RegisterContent";
 
 function RegisterPage() {
   return (
-    <div className="register">
+    <div className={`register `}>
       <RegisterContent />
     </div>
   );

@@ -1,0 +1,8 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.pageBackGroungColor{
+  background-image: linear-gradient(#12C2E9 ,#F64F59);
+}

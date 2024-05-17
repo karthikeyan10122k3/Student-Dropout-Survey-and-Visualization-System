@@ -1,7 +1,7 @@
 
 
 import { DroppedoutStudent } from "../../models/droppedoutStudent.js";
-import { surveyStudentMail } from './sendMail.js'
+import { surveyStudentMail } from '../SendEmail/AddDropoutEmail.js'
 
 export const addDropout = async (req, res) => {
 

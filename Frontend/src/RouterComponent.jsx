@@ -9,6 +9,7 @@ import InstitutionPage from "./Pages/Institution/InstitutionPage";
 import StudentSurveyPage from "./Pages/Student/StudentSurveyPage";
 import GovernmentPage from "./Pages/Government/GovernmentPage";
 import AboutUs from "./Components/Home/AboutUs";
+import IndividualLogin from "./Components/Registration/IndividualLogin";
 
 
 const RouterComponent = () => {
@@ -20,7 +21,8 @@ const RouterComponent = () => {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/register/student" element={<StudentSignUp />} />
+          <Route path="/login" element={<IndividualLogin />} />
+          <Route path="/login/student" element={<StudentSignUp />} />
           <Route path="/institution" element={<InstitutionPage />} />
           <Route path="/government" element={<GovernmentPage />} />
           <Route path="/studentSurvey" element={<StudentSurveyPage />} />

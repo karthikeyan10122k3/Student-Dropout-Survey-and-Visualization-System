@@ -23,7 +23,7 @@ const RegisterContent = () => {
           </div>
         </div>
       </div>
-      <div className="row mt-3">
+      <div>
         <div className="col">
           {user === "Government" && <GovernmentSignUp />}
           {user === "Institution" && <InstitutionSignUp />}

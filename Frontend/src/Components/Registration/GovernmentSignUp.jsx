@@ -91,10 +91,11 @@ const GovernmentSignUp = () => {
       setShowLogin(true);
     }
   };
+
   return (
     <>
       {!showLogin && (
-        <div className="container smaller-container mt-2">
+        <div className={`container smaller-container mt-2 ${govSignUpStyle.pageBackGroungColor}`}>
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <div className="card border-primary">

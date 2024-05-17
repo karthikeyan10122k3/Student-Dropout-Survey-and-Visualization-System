@@ -1,18 +1,19 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
+
+export const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.SENDER_GMAIL_ADDRESS,
-    pass: process.env.SENDER_GMAIL_PASSWORD,
+    user: process.env.DROPOUT_TEAM_EMAIL,
+    pass: process.env.DROPOUT_TEAM_EMAIL_PASSKEY,
   },
 });
-
 export async function surveyStudentMail(dropoutStudentName,dropoutStudentEmail) {
   const info = await transporter.sendMail({
-    from: process.env.SENDER_GMAIL_ADDRESS,
+    from: process.env.DROPOUT_TEAM_EMAIL,
     to: dropoutStudentEmail, 
     subject: "Invitation to Provide Feedback on Student Dropout Rate", 
     text: "Hello this Message is from Student Dropout rate User, Kindly fill the FeedBack Form", 
@@ -37,5 +38,5 @@ export async function surveyStudentMail(dropoutStudentName,dropoutStudentEmail) 
     `, 
   });
 
-  console.log("Message sent: %s", info.messageId);
+  // console.log("Message sent: %s", info.messageId);
 }

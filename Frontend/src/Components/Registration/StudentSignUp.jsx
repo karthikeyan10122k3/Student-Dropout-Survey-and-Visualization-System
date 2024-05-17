@@ -67,7 +67,7 @@ const StudentSignUp = () => {
   };
 
   return (
-    <div className="page-center ">
+    <div className="page-center">
       <div className="container smaller-container mt-2 mb-5 p-5">
         <div className="row">
           <div className="col-md-8 offset-md-2">

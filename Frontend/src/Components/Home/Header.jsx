@@ -1,32 +1,74 @@
+import { Link, useLocation } from "react-router-dom";
 import headerStyle from "../../Assets/Styles/Home/header.module.css";
 
+const links = [
+  {
+    id: 1,
+    path: "/",
+    pathName: "Home",
+  },
+  {
+    id: 2,
+    path: "/aboutUs",
+    pathName: "About",
+  },
+  {
+    id: 3,
+    path: "/contactUs",
+    pathName: "Contact",
+  },
+];
+
 const Header = () => {
+  const location = useLocation();
   return (
-    <header>
-      <div className={headerStyle.container}>
-        <div className={headerStyle.navbar}>
-          <div className={headerStyle.logo}>
-            <img src="/Images/Icon.png" alt="icon" />
-          </div>
-          <nav>
+    <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom ">
+      <a
+        href="/"
+        className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none ms-4"
+      >
+        <img src="/Images/Icon.png" alt="Icon" height={50} width={50} />
+        <span className="fs-4">Student Dropout Analysis</span>
+      </a>
+
+      <ul className="nav nav-pills me-4">
+        {links.map((link) => {
+          return (
+            <li className="nav-item" key={link.id}>
+              <Link
+                to={link.path}
+                className={`nav-link text-light ${
+                  location.pathname === link.path ? "active" : ""
+                }`}
+              >
+                {link.pathName}
+              </Link>
+            </li>
+          );
+        })}
+        <div class="dropdown">
+          <button
+            class="btn dropdown-toggle text-light"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Login
+          </button>
+          <ul class="dropdown-menu">
             <li>
-              <a href="/">Home</a>
+              <Link class="dropdown-item" to="/login"  state={{ componentToLogin:"government" }}>
+                Government Login
+              </Link>
             </li>
             <li>
-              <a href="/aboutUs">About</a>
+              <Link class="dropdown-item" to="/login"  state={{ componentToLogin: "institution"}}>
+              Institution Login
+              </Link>
             </li>
-            <li>
-              <a href="/contactUs">Contact Us</a>
-            </li>
-            <li>
-              <a href="/register">Login</a>
-            </li>
-          </nav>
-          <div className={headerStyle.btn}>
-            <i className="fa fa-bars menu-btn" />
-          </div>
+          </ul>
         </div>
-      </div>
+      </ul>
     </header>
   );
 };

@@ -9,6 +9,10 @@ const institutionUserSchema = new mongoose.Schema({
   institutionPassword: String,
   institutionLogo: String,
   institutionWebsite: String,
+  role: {
+    type: String,
+    default: 'institution' 
+  }
 });
 
 export const InstitutionUser = mongoose.model("institution_users", institutionUserSchema);

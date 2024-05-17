@@ -7,9 +7,10 @@ export const governmentSignUp =  async (req, res) => {
   try {
     const { governmentState, governmentEmail, governmentPassword } = req.body;
 
-    if (!governmentState || !governmentEmail || !governmentPassword) {
-      return res.status(400).json({ message: 'Government Missing required fields' });
-    }
+    // if (!governmentState || !governmentEmail || !governmentPassword) {
+    //   return res.status(400).json({ message: 'Government Missing required fields' });
+    // }
+    console.log( governmentState, governmentEmail, governmentPassword )
 
     bcrypt.hash(governmentPassword, saltRounds, async (err, hashedPassword) => {
       if (err) {

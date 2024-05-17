@@ -7,6 +7,10 @@ const studentUserSchema = new mongoose.Schema({
   studentState: String,
   studentMobileNumber: String,
   studentEmail: String,
+  role: {
+    type: String,
+    default: 'student' 
+  }
 });
 
 export const StudentUser = mongoose.model("student_users", studentUserSchema);

@@ -1,46 +1,65 @@
 import Header from "./Header";
-
+import { useForm } from 'react-hook-form';
+import axios from "axios";
 
 function ContactUs() {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async(data) =>{
+    try{
+      await axios.post("http://localhost:8000/admin/contactUs",data)
+      console.log("Email Sent Successfully!")
+    }catch(error){
+      console.log("Error Occured while Sending Email",error)
+    }
+  }
+
   return (
     <>
     <Header />
       <div className="d-flex justify-content-center align-items-center mt-5">
         <div className="col-12 col-lg-6 col-xl-5 border border-primary p-4 rounded text-center">
           <h2 className="h1 mb-3">Contact Us</h2>
-          <form >
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
               <input
+              {...register('name')} 
                 type="text"
-                className="form-control bgGray"
+                className="form-control"
                 id="name"
                 name="name"
                 placeholder="Enter Your Name"
-                required
               />
             </div>
             <div className="mb-3">
               <input
+              {...register('email', { required: true })} 
                 type="email"
-                className="form-control bgGray"
+                className="form-control"
                 id="email"
                 name="email"
                 placeholder="Enter Your Email"
-                required
               />
+              {errors.email && <p className="text-danger">Email is required.</p>}
             </div>
             <div className="mb-3">
               <textarea
-                className="form-control bgGray"
+              {...register('message', { required: true })} 
+                className="form-control"
                 id="message"
                 name="message"
                 rows="5"
                 placeholder="Enter Your Query"
-                required
               ></textarea>
+              {errors.message && <p className="text-danger">Query is required.</p>}
             </div>
             <button type="submit" className="btn btn-primary">
-              Submit
+              Send
             </button>
           </form>
         </div>

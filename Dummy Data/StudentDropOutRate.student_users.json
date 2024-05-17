@@ -1,0 +1,156 @@
+[{
+  "_id": {
+    "$oid": "65f9ad1b95219653516c8d47"
+  },
+  "studentEmisNumber": "9876-5432-1098",
+  "studentName": "Jane Smith",
+  "studentInstituteCode": "INST-02",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "9876543210",
+  "studentEmail": "jane.smith@example.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f9ad2795219653516c8d49"
+  },
+  "studentEmisNumber": "7890",
+  "studentName": "Sreeram K",
+  "studentInstituteCode": "TN-05",
+  "studentState": "Tamil Nade",
+  "studentMobileNumber": "987654321",
+  "studentEmail": "sree@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f9ad7295219653516c8d4b"
+  },
+  "studentEmisNumber": "qqqq",
+  "studentName": "qqq",
+  "studentInstituteCode": "qqqq",
+  "studentState": "qqqq",
+  "studentMobileNumber": "qqqq",
+  "studentEmail": "qqq",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f9afaff15b4acb68d9933a"
+  },
+  "studentEmisNumber": "7890",
+  "studentName": "Sreeram K",
+  "studentInstituteCode": "INST-02",
+  "studentState": "Tamil Nade",
+  "studentMobileNumber": "987654321",
+  "studentEmail": "sree@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f9b033f15b4acb68d99341"
+  },
+  "studentEmisNumber": "7890",
+  "studentName": "Sreeram K",
+  "studentInstituteCode": "qqqq",
+  "studentState": "Tamil Nade",
+  "studentMobileNumber": "987654321",
+  "studentEmail": "sree@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661ff5a66fff3add178600e0"
+  },
+  "studentEmisNumber": "123232112312312",
+  "studentName": "blabla bla",
+  "studentInstituteCode": "TNEA-55",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "1234567890",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662128bdb85ffd55d968dcf3"
+  },
+  "studentEmisNumber": "123232112312312",
+  "studentName": "blabla bla",
+  "studentInstituteCode": "TNEA-55",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "1234567890",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66214e83deb88e0615f57900"
+  },
+  "studentEmisNumber": "123232112312312",
+  "studentName": "blabla bla",
+  "studentInstituteCode": "TNEA-55",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "1234567890",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6621522f46724aaa1e8e0db0"
+  },
+  "studentEmisNumber": "123232112312312",
+  "studentName": "blabla bla",
+  "studentInstituteCode": "TNEA-55",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "1234567890",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6626a79a24709e05d085beb7"
+  },
+  "studentEmisNumber": "986532741",
+  "studentName": "Bella",
+  "studentInstituteCode": "TNEA-55",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "986532741",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6627156df3222aa245064911"
+  },
+  "studentEmisNumber": "9710740506",
+  "studentName": "Karthikeyan R",
+  "studentInstituteCode": "TNEA-55",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "9710740506",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662735b2e0475e2ed4a9f9f7"
+  },
+  "studentEmisNumber": "pec123",
+  "studentName": "Abinaya Shankar",
+  "studentInstituteCode": "TNEA-11",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "7410852963",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6627467ee0475e2ed4a9fa27"
+  },
+  "studentEmisNumber": "789",
+  "studentName": "shankar",
+  "studentInstituteCode": "TNEA-55",
+  "studentState": "Tamil Nadu",
+  "studentMobileNumber": "789",
+  "studentEmail": "kerthsk@gmail.com",
+  "__v": 0
+}]

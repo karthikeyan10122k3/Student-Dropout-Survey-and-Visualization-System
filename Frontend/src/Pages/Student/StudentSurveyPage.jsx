@@ -2,16 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../Assets/Styles/Student/studentSurveyPage.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const StudentSurvey = () => {
   const location = useLocation();
+  const navigate  = useNavigate()
   const [studentState, setStudentState] = useState("");
   useEffect(() => {
-    const state = location.state && location.state.studentInstituteState;
+    const state = location.state && location.state?.studentInstituteState;
     setStudentState(state);
   }, [location.state]);
+  useEffect(() => {
+    if (!studentState) {
+      alert("Student Not Aligible For Survey");
+      navigate("/login/student");
+    }
+  }, [studentState]);
 
+  if (!studentState) {
+    return null; 
+  }
+  
   const [formData, setFormData] = useState({
     dropoutStudentDate: "",
     religion: "",
