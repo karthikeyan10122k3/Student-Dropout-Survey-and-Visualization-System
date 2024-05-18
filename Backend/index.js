@@ -1,12 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import cors from 'cors';
+import cors from 'cors'
 
 import governmentRoute from './routes/government.js'
 import institutionRoute from './routes/institution.js'
 import studentRoute from './routes/student.js'
-import contactUsRoute from './routes/contactUs.js'
+import adminRoute from './routes/admin.js'
 
 dotenv.config();
 const app = express();
@@ -35,4 +35,4 @@ mongoose.connect(MONGO_URI, {
 app.use("/government",governmentRoute)
 app.use("/institution",institutionRoute)
 app.use("/student",studentRoute)
-app.use("/admin",contactUsRoute)
+app.use("/admin",adminRoute)

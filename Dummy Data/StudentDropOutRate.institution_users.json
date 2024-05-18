@@ -8,6 +8,7 @@
   "institutionEmail": "vec@gmail.com",
   "institutionPassword": "$2b$05$dmhVDU5yth883o/nzrq6guobzjy9Uz0KtrhIkQiQjLABTEcgLHica",
   "institutionWebsite": "https://velammal.edu.in/",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -20,6 +21,7 @@
   "institutionEmail": "rec@gmail.com",
   "institutionPassword": "$2b$05$sWYxhyvYpqtMlS2KBgFjse0lprzGk3OKmJCsS7X32wLiMb6nFKBSK",
   "institutionWebsite": "https://www.rajalakshmi.org/",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -32,6 +34,7 @@
   "institutionEmail": "vit@gmail.com",
   "institutionPassword": "$2b$05$fPdckXqiTi4WHjpvZo991eLYaZE8jnFINieZdFmVztKnXlDPlZWSG",
   "institutionWebsite": "https://chennai.vit.ac.in/",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -44,6 +47,7 @@
   "institutionEmail": "pec@gmail.com",
   "institutionPassword": "$2b$05$GLlRDtb5ptns5ZXwoi9Gt.m8HmL1JremJMXJ/8FoT.8xnipAaitye",
   "institutionWebsite": "https://panimalar.ac.in/",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -56,6 +60,7 @@
   "institutionEmail": "au@gmail.com",
   "institutionPassword": "$2b$05$L65xxrWu.h6KtR0SUWDBje6E4AscWS60gy3qCjGomAozssHXx6SvC",
   "institutionWebsite": "",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -68,6 +73,7 @@
   "institutionEmail": "apec@gmail.com",
   "institutionPassword": "$2b$05$yaQ.zyP/3tbW2FjdoNZ9u.yRDkpECMJc/JNaf49eNM1PDVi5frBIO",
   "institutionWebsite": "",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -80,6 +86,7 @@
   "institutionEmail": "a@gmail.com",
   "institutionPassword": "$2b$05$/.Al4QDGFMRHa3txdFY2gur5YPPjd1VoVgXGLU34liOH6WqZMYk7W",
   "institutionWebsite": "",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -92,6 +99,7 @@
   "institutionEmail": "b@gmail.com",
   "institutionPassword": "$2b$05$teW9zpKz2VGDz9tKiJV2xO0q0AbqgDdPHeQr9AgEJ3K9/E2XlXmUK",
   "institutionWebsite": "",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -104,6 +112,7 @@
   "institutionEmail": "kec@gmail.com",
   "institutionPassword": "$2b$05$EPiJnqii0RL9hJ6B7yqrX.H..I0VvjV/OkiQWnYNM7WDxiNPz0YsS",
   "institutionWebsite": "",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -116,6 +125,7 @@
   "institutionEmail": "mpec@gmail.com",
   "institutionPassword": "$2b$05$ejmFj9nG3reQDQqo7MrDze2JSOOVwXl/Yn3InMBEfsmsnykUl9jCC",
   "institutionWebsite": "",
+  "role":"institution",
   "__v": 0
 },
 {
@@ -128,5 +138,6 @@
   "institutionEmail": "Kerala@gmail.com",
   "institutionPassword": "$2b$05$4AzafM35LfMZjxGLL0Edo.H9FwUQi1dnBF77JpXBm3aDEMvoWrgGW",
   "institutionWebsite": "",
+  "role":"institution",
   "__v": 0
 }]

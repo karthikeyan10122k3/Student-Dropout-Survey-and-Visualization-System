@@ -46,23 +46,23 @@ const Header = () => {
             </li>
           );
         })}
-        <div class="dropdown">
+        <div className="dropdown">
           <button
-            class="btn dropdown-toggle text-light"
+            className="btn dropdown-toggle text-light"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
             Login
           </button>
-          <ul class="dropdown-menu">
+          <ul className="dropdown-menu">
             <li>
-              <Link class="dropdown-item" to="/login"  state={{ componentToLogin:"government" }}>
+              <Link className="dropdown-item" to="/login"  state={{ componentToLogin:"government" }}>
                 Government Login
               </Link>
             </li>
             <li>
-              <Link class="dropdown-item" to="/login"  state={{ componentToLogin: "institution"}}>
+              <Link className="dropdown-item" to="/login"  state={{ componentToLogin: "institution"}}>
               Institution Login
               </Link>
             </li>

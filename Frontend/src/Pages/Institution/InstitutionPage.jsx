@@ -23,6 +23,9 @@ const Institution = () => {
 
           if (institutionUser) {
             setInstitution(institutionUser);
+            if (!institution) {
+              navigate("/login", { state: { componentToLogin: "institution" } });
+            }
           } else {
             console.log("Institution user not found");
           }
@@ -35,12 +38,6 @@ const Institution = () => {
     fetchData();
   }, [location.state]);
 
-  useEffect(() => {
-    if (!institution) {
-      alert("Institution User Not Found. Please Sign In First.");
-      navigate("/login", { state: { componentToLogin: "institution" } });
-    }
-  }, [institution, navigate]);
 
   if (!institution) {
     return null; 

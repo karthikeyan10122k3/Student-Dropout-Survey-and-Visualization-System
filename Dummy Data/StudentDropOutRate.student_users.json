@@ -8,6 +8,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "9876543210",
   "studentEmail": "jane.smith@example.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -20,6 +21,7 @@
   "studentState": "Tamil Nade",
   "studentMobileNumber": "987654321",
   "studentEmail": "sree@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -32,6 +34,7 @@
   "studentState": "qqqq",
   "studentMobileNumber": "qqqq",
   "studentEmail": "qqq",
+  "role":"student",
   "__v": 0
 },
 {
@@ -44,6 +47,7 @@
   "studentState": "Tamil Nade",
   "studentMobileNumber": "987654321",
   "studentEmail": "sree@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -56,6 +60,7 @@
   "studentState": "Tamil Nade",
   "studentMobileNumber": "987654321",
   "studentEmail": "sree@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -68,6 +73,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "1234567890",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -80,6 +86,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "1234567890",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -92,6 +99,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "1234567890",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -104,6 +112,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "1234567890",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -116,6 +125,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "986532741",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -128,6 +138,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "9710740506",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -140,6 +151,7 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "7410852963",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 },
 {
@@ -152,5 +164,6 @@
   "studentState": "Tamil Nadu",
   "studentMobileNumber": "789",
   "studentEmail": "kerthsk@gmail.com",
+  "role":"student",
   "__v": 0
 }]

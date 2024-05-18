@@ -1,14 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import registerPageStyle from "../../Assets/Styles/Registration/registerPage.module.css";
+import RegisterOption from "../../Components/Registration/RegisterOption";
 
-
-import RegisterContent from "../../Components/Registration/RegisterContent";
 
 function RegisterPage() {
   return (
-    <div className={`register `}>
-      <RegisterContent />
+    <div className={`d-flex align-items-center justify-content-center vh-100 ${registerPageStyle.pageBackGroungColor}`}>
+      <RegisterOption />
     </div>
   );
 }

@@ -11,12 +11,10 @@ const Government = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [government, setGovernment] = useState(null);
-  const [govEmail, setGovEmail] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const govEmail = location.state?.govEmail;
-      setGovEmail(govEmail);
 
       if (govEmail) {
         try {
@@ -27,8 +25,10 @@ const Government = () => {
           const government = governments.find(
             (government) => government.governmentEmail === govEmail
           );
-          console.log(government);
           setGovernment(government);
+          if (!govEmail || !government || government.role !== "government") {
+            navigate("/login", { state: { componentToLogin: "government" } });
+          }
         } catch (error) {
           console.error("Error fetching Government user data:", error);
         }
@@ -37,12 +37,6 @@ const Government = () => {
     fetchData();
   }, [location.state]);
 
-  useEffect(() => {
-    if (!govEmail || !government || government.role !== "government") {
-      alert("User Not Found. Please Sign In First.");
-      navigate("/login", { state: { componentToLogin: "government" } });
-    }
-  }, [govEmail, government, navigate]);
 
   if (!government || government.role !== "government") {
     return null; 
@@ -51,7 +45,7 @@ const Government = () => {
   return (
     <>
       <div className="header">
-        <Header governmentState={government.governmentState} />
+        <Header government={government} />
       </div>
       <Dashboard governmentState={government.governmentState} />
     </>

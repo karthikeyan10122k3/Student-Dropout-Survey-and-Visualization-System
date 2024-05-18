@@ -14,7 +14,6 @@ const StudentSurvey = () => {
   }, [location.state]);
   useEffect(() => {
     if (!studentState) {
-      alert("Student Not Aligible For Survey");
       navigate("/login/student");
     }
   }, [studentState]);

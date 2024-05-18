@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { GovernmentLoginComponent } from "./Login";
-import "../../Assets/Styles/Registration/govSignUp.css";
+
+import "../../../Assets/Styles/Registration/govSignUp.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const GovernmentSignUp = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -13,14 +14,6 @@ const GovernmentSignUp = () => {
   });
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [errors, setErrors] = useState({});
-
-  const handleLoginClick = () => {
-    setShowLogin(true);
-  };
-
-  const handleSignupClick = () => {
-    setShowLogin(false);
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -94,15 +87,16 @@ const GovernmentSignUp = () => {
 
   return (
     <>
-      {!showLogin && (
-        <div className={`container smaller-container mt-2 ${govSignUpStyle.pageBackGroungColor}`}>
+        <div className="container smaller-container mt-2 ">
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <div className="card border-primary">
                 <div className="card-body">
+                  <div className="text-center">
                   <h5 className="card-title text-blue font-weight-bolder text-primary text">
                     Government Signup
                   </h5>
+                  </div>
                   <form onSubmit={handleSubmit}>
                     <div className="form-group">
                       <input
@@ -184,15 +178,17 @@ const GovernmentSignUp = () => {
                         <span className="text-danger">{errors.terms}</span>
                       )}
                     </div>
+                    <div className="text-center">
                     <button type="submit" className="btn btn-primary my-2">
                       Signup
                     </button>
-                    <div className="inst-login-signup">
+                    </div>
+                    <div className="d-flex align-items-center justify-content-center gap-2">
                       <div className="inst-text">Already a Member?</div>
                       <div className="inst-text inst-signup-link">
-                        <a onClick={handleLoginClick} href="#">
+                        <Link to="/login" state={{ componentToLogin: "government"}} >
                           Login Now
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </form>
@@ -201,10 +197,6 @@ const GovernmentSignUp = () => {
             </div>
           </div>
         </div>
-      )}
-      {showLogin && (
-        <GovernmentLoginComponent handleSignupClick={handleSignupClick} />
-      )}
 
       <div
         className="modal fade"
