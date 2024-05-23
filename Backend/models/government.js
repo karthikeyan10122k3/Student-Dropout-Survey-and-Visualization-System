@@ -8,6 +8,9 @@ const governmentUserSchema = new mongoose.Schema({
     type: String,
     default: 'government' 
   }
+},
+{
+  timestamps:true,
 });
 
 export const GovernmentUser = mongoose.model('government_users', governmentUserSchema);

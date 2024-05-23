@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../../Assets/Styles/Registration/login.css";
 import axios from "axios";
+import  Header  from '../../Home/Header'
 
-export const GovernmentLogin = () => {
+const GovernmentLogin = () => {
+
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     governmentEmail: "",
@@ -39,37 +41,42 @@ export const GovernmentLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let newErrors = {};
+
     if (validateForm()) {
       try {
         const response = await axios.post(
           "http://localhost:8000/government/login",
           loginData
         );
-        const logInAccepted = response.data.logInAccepted;
-        console.log(logInAccepted);
+        const user = response.data;
 
-        if (logInAccepted) {
+        if (user.email) {
           navigate("/government", {
-            state: { govEmail: loginData.governmentEmail },
+            state: { govEmail: loginData.governmentEmail , accessToken:user.accessToken },
           });
         } else {
-          alert("Invalid credentials. Please try again.");
+          newErrors.validUser = user.message;
+          setErrors(newErrors);
         }
       } catch (error) {
         console.error("Error fetching government user data:", error);
       }
     }
   };
+
+
   return (
+    <>
     <div className="container smaller-container mt-2">
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <div className="card border-primary">
             <div className="card-body">
               <div className="text-center">
-              <h5 className="card-title text-blue font-weight-bolder text-primary text">
-                Government Login
-              </h5>
+                <h5 className="card-title text-blue font-weight-bolder text-primary text">
+                  Government Login
+                </h5>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -103,7 +110,7 @@ export const GovernmentLogin = () => {
                 <div className="form-group form-check">
                   <input
                     type="checkbox"
-                    id="log-Check"
+                    id="logCheck"
                     checked={rememberMe}
                     onChange={handleCheckboxChange}
                     className="form-check-input"
@@ -115,10 +122,18 @@ export const GovernmentLogin = () => {
                     Remember me
                   </label>
                 </div>
-                <div className="form-group mb-2 text-center" >
-                  <button type="submit" className="btn btn-primary">
+                <div className="text-center text-danger mb-3">
+                  {errors.validUser && (
+                    <span className="error">{errors.validUser}</span>
+                  )}
+                </div>
+                <div className="form-group mb-2 text-center">
+                  <button type="submit" className="btn btn-primary me-3">
                     Login
                   </button>
+                  <Link to={"/"} className="btn btn-primary " >
+                    Home
+                  </Link>
                 </div>
               </form>
               <div className="log-login-signup mb-2 text-center">
@@ -138,5 +153,8 @@ export const GovernmentLogin = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
+
+export default GovernmentLogin;

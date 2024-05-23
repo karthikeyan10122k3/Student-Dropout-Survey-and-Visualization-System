@@ -4,7 +4,6 @@ import AddDropout from "./AddDropout";
 import ViewDropout from "./ViewDropout";
 import RemoveDropout from "./RemoveDropout";
 import DashBoardContent from "./DashBoardContent";
-import Header from "./Header";
 
 const Dashboard = ({ institutionName, institutionCode }) => {
   const [activeComponent, setActiveComponent] = useState("dashBoard");
@@ -40,18 +39,7 @@ const Dashboard = ({ institutionName, institutionCode }) => {
     );
   }
 
-  return (
-    <div>
-      <div style={{ backgroundColor: "#FFA500" }}>
-        
-        <Header
-          institutionName={institutionName}
-          setActiveComponent={setActiveComponent}
-        />
-      </div>
-        {componentToRender}
-    </div>
-  );
+  return <div>{componentToRender}</div>;
 };
 
 export default Dashboard;

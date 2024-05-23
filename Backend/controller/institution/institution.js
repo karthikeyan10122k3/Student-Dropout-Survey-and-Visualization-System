@@ -1,5 +1,6 @@
 import { InstitutionUser } from "../../models/institution.js";
 import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken"
 
 export const institutionSignUp = async(req,res) => {
   const saltRounds =5;
@@ -54,6 +55,7 @@ export const institutionLogin = async (req, res) => {
 
   try {
     const { institutionEmail, institutionPassword } = req.body;
+    // console.log("IN SERVER SIDE: ", institutionEmail, institutionPassword )
 
     const user = await InstitutionUser.findOne({ institutionEmail });
 
@@ -68,9 +70,12 @@ export const institutionLogin = async (req, res) => {
         return res.status(500).json({ message: "Error occurred while comparing password" });
       }
       if (result) {
-        res.send({ logInAccepted: true });
+        const accessToken = jwt.sign({email: institutionEmail}, process.env.ACCESS_TOKEN_SECRET,{
+          expiresIn: "1h"
+        })
+        res.json({ email: institutionEmail , role : user.role , accessToken: accessToken});
       } else {
-        res.send({ logInAccepted: false });
+        res.json({ message:"Invalid Credentials" });
       }
     });
   } catch (error) {

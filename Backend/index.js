@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import cors from 'cors'
 
 import governmentRoute from './routes/government.js'
@@ -8,7 +7,6 @@ import institutionRoute from './routes/institution.js'
 import studentRoute from './routes/student.js'
 import adminRoute from './routes/admin.js'
 
-dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 7000;
 const MONGO_URI = process.env.MONGO_URI;

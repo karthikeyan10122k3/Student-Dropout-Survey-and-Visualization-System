@@ -13,6 +13,9 @@ const institutionUserSchema = new mongoose.Schema({
     type: String,
     default: 'institution' 
   }
+},
+{
+  timestamps:true,
 });
 
 export const InstitutionUser = mongoose.model("institution_users", institutionUserSchema);

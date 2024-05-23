@@ -9,6 +9,9 @@ const droppedoutStudentSchema = new mongoose.Schema({
   dropoutStudentDate: String,
   dropoutStudentInstCode: String,
   dropoutStudentReason: String,
+},
+{
+  timestamps:true,
 });
 
 export const DroppedoutStudent = mongoose.model("add_dropouts", droppedoutStudentSchema);

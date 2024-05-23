@@ -11,6 +11,9 @@ const studentUserSchema = new mongoose.Schema({
     type: String,
     default: 'student' 
   }
+},
+{
+  timestamps:true,
 });
 
 export const StudentUser = mongoose.model("student_users", studentUserSchema);

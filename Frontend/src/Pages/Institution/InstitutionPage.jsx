@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Dashboard from "../../Components/Institution/DashBoard";
+import Header from "../../Components/Institution/Header";
 
 const Institution = () => {
   const navigate = useNavigate();
@@ -13,39 +14,56 @@ const Institution = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const email = location.state?.InstEmail;
+      const validUser = location?.state;
 
-      if (email) {
+      if (validUser?.InstEmail && validUser?.accessToken) {
         try {
-          const response = await axios.get("http://localhost:8000/institution/getInstitutionUser");
-          const institutions = response.data;
-          const institutionUser = institutions.find(user => user.institutionEmail === email);
+          const response = await axios.get(
+            "http://localhost:8000/institution/getInstitutionUser"
+          );
 
-          if (institutionUser) {
-            setInstitution(institutionUser);
-            if (!institution) {
-              navigate("/login", { state: { componentToLogin: "institution" } });
-            }
-          } else {
-            console.log("Institution user not found");
+          const institutions = response.data;
+          const institution = institutions.find(
+            (user) => user.institutionEmail === validUser?.InstEmail
+          );
+          setInstitution(institution);
+
+          if (
+            !validUser?.InstEmail ||
+            !institution ||
+            !validUser?.accessToken ||
+            institution.role !== "institution"
+          ) {
+            navigate("/login", { state: { componentToLogin: "institution" } });
           }
         } catch (error) {
           console.error("Error fetching institution user data:", error);
         }
+      } else {
+        navigate("/login", { state: { componentToLogin: "institution" } });
       }
     };
 
     fetchData();
   }, [location.state]);
 
-
-  if (!institution) {
-    return null; 
+  if (!institution ) {
+    return null;
   }
 
   return (
     <>
-      <Dashboard institutionName={institution.institutionName} institutionCode={institution.institutionCode} /> 
+      <div style={{ backgroundColor: "#FFA500" }}>
+        <Header
+          institution={institution}
+          setInstitution={setInstitution}
+        />
+      </div>
+      <Dashboard
+        institutionName={institution.institutionName}
+        institutionCode={institution.institutionCode}
+        setInstitution={setInstitution}
+      />
     </>
   );
 };

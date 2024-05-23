@@ -17,7 +17,6 @@ export const addStudentSurvey = async (req, res) => {
       furtherEducationPlans,
       studentInstituteState,
     } = req.body;
-    console.log(studentInstituteState)
 
     if (
       !dropoutStudentDate ||
@@ -33,9 +32,7 @@ export const addStudentSurvey = async (req, res) => {
       !furtherEducationPlans ||
       !studentInstituteState
     ) {
-      return res
-        .status(400)
-        .json({ message: "Survey missing required fields" });
+      return res.status(400).json({ message: "Survey missing required fields" });
     }
 
     const studentSurvey = new StudentSurvey({

@@ -1,15 +1,13 @@
 
 import bcrypt from 'bcrypt';
 import { GovernmentUser } from '../../models/government.js';
+import jwt from 'jsonwebtoken';
+
 
 export const governmentSignUp =  async (req, res) => {
   const saltRounds = 10
   try {
     const { governmentState, governmentEmail, governmentPassword } = req.body;
-
-    // if (!governmentState || !governmentEmail || !governmentPassword) {
-    //   return res.status(400).json({ message: 'Government Missing required fields' });
-    // }
     console.log( governmentState, governmentEmail, governmentPassword )
 
     bcrypt.hash(governmentPassword, saltRounds, async (err, hashedPassword) => {
@@ -49,9 +47,13 @@ export const governmentLogin =  async (req, res) => {
         return res.status(500).json({ message: "Error occurred while comparing password" });
       }
       if (result) {
-        res.send({ logInAccepted: true });
-      } else {
-        res.send({ logInAccepted: false });
+        const accessToken = jwt.sign({ email: governmentEmail }, process.env.ACCESS_TOKEN_SECRET, {
+          expiresIn: "1h"
+        });
+        res.json({email:governmentEmail ,role:user.role , accessToken: accessToken });
+      } 
+      else {
+        res.json({ message: "Invalid Credentials" });
       }
     });
   } catch (error) {

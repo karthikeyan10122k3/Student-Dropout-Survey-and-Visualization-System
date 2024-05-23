@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Header = ({government}) => {
-  console.log(government)
+const Header = ({government, setGovernment}) => {
   return (
     <>
       <header className="p-2">
@@ -12,7 +11,7 @@ const Header = ({government}) => {
               <Link className="btn btn-warning me-3" to={"/government/AddInstitution"} state={{government:government}}>
                 Add Institution
               </Link>
-              <Link to="/" className="btn btn-warning">
+              <Link onClick={()=>setGovernment(null)}  className="btn btn-warning">
                 Sign-Out
               </Link>
             </div>

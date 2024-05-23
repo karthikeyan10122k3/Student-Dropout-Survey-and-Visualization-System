@@ -4,8 +4,9 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Header from "../../Components/Government/Header";
 import Dashboard from "../../Components/Government/DashBoard";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+
 
 const Government = () => {
   const navigate = useNavigate();
@@ -14,24 +15,26 @@ const Government = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const govEmail = location.state?.govEmail;
+      const validLogin = location?.state;
 
-      if (govEmail) {
+      if (validLogin?.govEmail && validLogin?.accessToken) {
         try {
           const response = await axios.get(
             "http://localhost:8000/government/getUsers"
           );
           const governments = response.data;
           const government = governments.find(
-            (government) => government.governmentEmail === govEmail
+            (government) => government.governmentEmail === validLogin?.govEmail
           );
           setGovernment(government);
-          if (!govEmail || !government || government.role !== "government") {
+          if (!validLogin?.govEmail || !government || !validLogin?.accessToken || government.role !== "government") {
             navigate("/login", { state: { componentToLogin: "government" } });
           }
         } catch (error) {
           console.error("Error fetching Government user data:", error);
         }
+      }else{
+        navigate("/login", { state: { componentToLogin: "government" } });
       }
     };
     fetchData();
@@ -45,7 +48,7 @@ const Government = () => {
   return (
     <>
       <div className="header">
-        <Header government={government} />
+        <Header government={government} setGovernment={setGovernment} />
       </div>
       <Dashboard governmentState={government.governmentState} />
     </>

@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../../Assets/Styles/Registration/login.css";
 import axios from "axios";
 
-
 export const InstitutionLogin = () => {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
@@ -40,22 +39,22 @@ export const InstitutionLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let newErrors = {};
     if (validateForm()) {
-      console.log(loginData);
-
       try {
         const response = await axios.post(
           "http://localhost:8000/institution/login",
           loginData
         );
-        const logInAccepted = response.data.logInAccepted;
+        const user = response.data;
 
-        if (logInAccepted) {
+        if (user.email) {
           navigate("/institution", {
-            state: { InstEmail: loginData.institutionEmail },
+            state: { InstEmail: loginData.institutionEmail, accessToken:user.accessToken },
           });
         } else {
-          alert("Invalid credentials. Please try again.");
+          newErrors.validUser = user.message;
+          setErrors(newErrors);
         }
       } catch (error) {
         console.error("Error fetching institution data:", error);
@@ -70,9 +69,9 @@ export const InstitutionLogin = () => {
           <div className="card border-primary">
             <div className="card-body">
               <div className="text-center">
-              <h5 className="card-title text-blue font-weight-bolder text-primary text">
-                Institution Login
-              </h5>
+                <h5 className="card-title text-blue font-weight-bolder text-primary text">
+                  Institution Login
+                </h5>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -118,10 +117,18 @@ export const InstitutionLogin = () => {
                     Remember me
                   </label>
                 </div>
+                <div className="text-center text-danger mb-3">
+                  {errors.validUser && (
+                    <span className="error">{errors.validUser}</span>
+                  )}
+                </div>
                 <div className="form-group mb-2 text-center">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary me-3">
                     Login
                   </button>
+                  <Link to={"/"} className="btn btn-primary " >
+                    Home
+                  </Link>
                 </div>
               </form>
               <div className="log-login-signup mb-2 text-center">
