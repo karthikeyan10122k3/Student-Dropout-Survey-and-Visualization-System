@@ -12,7 +12,7 @@ function ContactUs() {
 
   const onSubmit = async(data) =>{
     try{
-      await axios.post("http://localhost:8000/admin/contactUs",data)
+      await axios.post("http://localhost:8000/admin/contact",data)
       console.log("Email Sent Successfully!")
     }catch(error){
       console.log("Error Occured while Sending Email",error)

@@ -12,6 +12,7 @@ const Government = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [government, setGovernment] = useState(null);
+  const [accessToken , setAccessToken] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +28,7 @@ const Government = () => {
             (government) => government.governmentEmail === validLogin?.govEmail
           );
           setGovernment(government);
+          setAccessToken(validLogin?.accessToken)
           if (!validLogin?.govEmail || !government || !validLogin?.accessToken || government.role !== "government") {
             navigate("/login", { state: { componentToLogin: "government" } });
           }
@@ -48,7 +50,7 @@ const Government = () => {
   return (
     <>
       <div className="header">
-        <Header government={government} setGovernment={setGovernment} />
+        <Header government={government} setGovernment={setGovernment} accessToken={accessToken}/>
       </div>
       <Dashboard governmentState={government.governmentState} />
     </>

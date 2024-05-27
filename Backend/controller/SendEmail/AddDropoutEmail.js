@@ -38,5 +38,5 @@ export async function surveyStudentMail(dropoutStudentName,dropoutStudentEmail) 
     `, 
   });
 
-  // console.log("Message sent: %s", info.messageId);
+  console.log("Message sent: %s", info.messageId);
 }

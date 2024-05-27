@@ -14,7 +14,13 @@ export const addInstitution = async(req,res) => {
       institutionPassword,
       institutionWebsite,
     } = req.body
-    
+    // console.log(institutionCode,
+    //   institutionName,
+    //   institutionState,
+    //   governmentState,
+    //   institutionEmail,
+    //   institutionPassword,
+    //   institutionWebsite)
     if(
       !institutionCode || 
       !institutionName || 

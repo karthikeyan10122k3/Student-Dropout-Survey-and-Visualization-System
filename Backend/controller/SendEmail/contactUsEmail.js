@@ -7,11 +7,6 @@ export async function contactUsEmail(req, res) {
   try {
     const { name, email, message } = req.body;
 
-    if (!email || !message) {
-      console.log("Missing Required Fields");
-      return res.status(400).json({ error: "Email and message are required." });
-    }
-
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -50,10 +45,9 @@ export async function contactUsEmail(req, res) {
       `,
     });
 
-    // console.log("Message sent: %s", info.messageId);
+    console.log("Message sent: %s", info.messageId);
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
-    console.log("Error Occurred getting Contactor Data", error);
-    res.status(500).json({ error: "Error occurred while sending email" });
+    res.status(500).json({ error: `Error occurred while sending email ${error}` });
   }
 }

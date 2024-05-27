@@ -6,6 +6,7 @@ const AddInstitution = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const government = location.state?.government;
+  const accessToken = location.state?.accessToken;
   const [institution, setInstitution] = useState({
     institutionName: "",
     institutionState: government.governmentState,
@@ -158,7 +159,7 @@ const AddInstitution = () => {
                     <button
                       className="btn btn-secondary my-2 me-3"
                       onClick={() => navigate("/government", {
-                        state: { govEmail: government.governmentEmail },
+                        state: { govEmail: government.governmentEmail , accessToken:accessToken },
                       })}
                     >
                       Back
@@ -169,107 +170,6 @@ const AddInstitution = () => {
                   </div>
                 </form>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-lg">
-          <div className="modal-content ">
-            <div className="modal-header ">
-              <h1 className="modal-title fs-5 " id="exampleModalLabel">
-                Terms and Conditions
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p>
-                Welcome to Student Dropout Rate Analysis! Before you sign up,
-                please read these terms and conditions carefully. By creating an
-                account on our website, you agree to abide by these terms.
-              </p>
-              <ol>
-                <li>
-                  <strong>Registration Information:</strong> When signing up for
-                  an account on Student Dropout Rate Analysis, you agree to
-                  provide accurate and complete information about yourself as
-                  prompted by the registration form. You also agree to maintain
-                  and promptly update your registration information to ensure it
-                  remains accurate and complete.
-                </li>
-                <li>
-                  <strong>Account Security:</strong> You are responsible for
-                  maintaining the confidentiality of your account credentials,
-                  including your username and password. You agree not to share
-                  your account credentials with anyone else or allow anyone else
-                  to access your account. You are solely responsible for all
-                  activities that occur under your account.
-                </li>
-                <li>
-                  <strong>User Conduct:</strong> You agree to use Student
-                  Dropout Rate Analysis only for lawful purposes and in a manner
-                  consistent with all applicable laws and regulations. You agree
-                  not to use the website in any way that could harm the website,
-                  its users, or its reputation.
-                </li>
-                <li>
-                  <strong>Intellectual Property:</strong> All content on Student
-                  Dropout Rate Analysis, including text, graphics, logos,
-                  images, and software, is the property of Student Dropout Rate
-                  Team or its licensors and is protected by intellectual
-                  property laws. You agree not to reproduce, distribute, modify,
-                  or create derivative works based on any content from the
-                  website without prior written consent.
-                </li>
-                <li>
-                  <strong>Privacy:</strong> Your privacy is important to us.
-                  Please review our Privacy Policy to understand how we collect,
-                  use, and disclose your personal information.
-                </li>
-                <li>
-                  <strong>Termination:</strong> Student Dropout Rate Team
-                  reserves the right to terminate or suspend your account at any
-                  time and for any reason without prior notice. In the event of
-                  termination or suspension, you will no longer have access to
-                  your account, and any content associated with your account may
-                  be deleted.
-                </li>
-                <li>
-                  <strong>Changes to Terms:</strong> Student Dropout Rate Team
-                  reserves the right to modify or update these terms and
-                  conditions at any time without prior notice. Any changes will
-                  be effective immediately upon posting to the website. Your
-                  continued use of the website after any such changes
-                  constitutes your acceptance of the revised terms and
-                  conditions.
-                </li>
-              </ol>
-              <p>
-                By clicking "Close" button, you acknowledge that you have read,
-                understood, and agree to be bound by these terms and conditions.
-                If you do not agree to these terms, please do not proceed with
-                the registration process.
-              </p>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
             </div>
           </div>
         </div>

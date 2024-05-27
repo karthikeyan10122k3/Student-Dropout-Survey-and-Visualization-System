@@ -1,6 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 import governmentRoute from './routes/government.js'
 import institutionRoute from './routes/institution.js'
